@@ -163,6 +163,6 @@ mat-expansion-panel {
     }
 }
 
-.mat-expansion-panel-header-description, .mat-expansion-indicator::after {
+::ng-deep .specific-class > .mat-expansion-indicator:after {
     color: white;
 }
