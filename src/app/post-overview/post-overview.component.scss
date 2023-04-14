@@ -2,9 +2,20 @@
     width: auto;
     height: 100%;
     background-color: white;
-    overflow-y: auto;
-    
-    
+}
+
+.conversationInfo{
+    height: auto;
+    border-bottom: 2px solid lightgrey;
+    padding-bottom: 12px;
+
+    .content{
+        padding-left: 6px;
+        padding-bottom: 24px;
+    }
+    span{
+        font-weight: bold;
+    }
 }
 
 .header{
@@ -13,25 +24,18 @@
     position: relative;
     padding-top: 12px;
     margin-left: 56px;
-    min-height: 80px;
-
-    border-bottom: 2px solid lightgrey;
-    
-    span{
-        font-weight: bold;
-    }
+    padding-bottom: 36px;
 }
 
 .postContentContainer{
-    height: 600px;
-    overflow-y: scroll;   
+    height: calc(90vh - 120px);
+    overflow-y: auto;
 }
 
 .postContentHeader{
     height: 32px;
     border-bottom: 1px solid lightgrey;
     padding: 6px;
-    border-right: 1px solid lightgrey;
 }
 
 .postContent{
@@ -72,9 +76,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: gray;
     border-radius: 8px;
-    position: absolute;
     bottom: 32px;
     margin-left: auto;
     margin-right: auto;

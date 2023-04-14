@@ -3,12 +3,16 @@
         <span># channels</span>
     </div>
     <div class="postContentContainer">
-        <div class="header">
-            <div class="userPic">pic</div>
-            <span>Manuel Thaler</span>
-            Diese Unterhaltung findet nur zwischen
-            @Manuel Thaler
-            und dir statt. Schaue dir das Profil der Person an, um mehr über sie zu erfahren. Profil anzeigen
+        <div class="conversationInfo">
+            <div class="header">
+                <div class="userPic">pic</div>
+                <span>Manuel Thaler</span>
+            </div>
+            <div class="content">
+                Diese Unterhaltung findet nur zwischen
+                @Manuel Thaler
+                und dir statt. Schaue dir das Profil der Person an, um mehr über sie zu erfahren. Profil anzeigen
+            </div>
         </div>
         <div class="postContent">
             <div class="postHeader">
@@ -53,7 +57,8 @@
                     Mein PF ist schon eine ganz gute Basis, denke ich.
                     https://heinzfriess.com/
                     Ist schon bei über 80%, Hauptsächlich responsive ist noch Detailarbeit zu tun.
-                    Soll ich dann die Abgabe Funktion nutzen oder schaltest Du mir die nächsten Module frei? (bearbeitet)
+                    Soll ich dann die Abgabe Funktion nutzen oder schaltest Du mir die nächsten Module frei?
+                    (bearbeitet)
                 </div>
             </div>
             <div class="post">
@@ -83,16 +88,10 @@
         </div>
     </div>
     <div class="messageBox">
-        <div class="messageBoxHead">
-            boxhead
-        </div>
-        <div class="messageBoxInput">
-            <form action="">
-                <input type="text">
-            </form>
-        </div>
-        <div class="messageBoxFooter">
-            footer
-        </div>
+        <mat-form-field appearance="outline">
+            <mat-label>Nachtricht an ....</mat-label>
+            <textarea matInput></textarea>
+            <mat-icon matSuffix>send</mat-icon>
+        </mat-form-field>
     </div>
 </div>

@@ -1,12 +1,11 @@
-.threads{
+.threads {
     width: 300px;
+    height: 100%;
     background-color: white;
-    overflow-y: auto;
-    
-    
+    border-left: 1px solid lightgrey; 
 }
 
-.header{
+.header {
     display: flex;
     flex-direction: column;
     position: relative;
@@ -15,18 +14,18 @@
     min-height: 80px;
 
     border-bottom: 2px solid lightgrey;
-    
-    span{
+
+    span {
         font-weight: bold;
     }
 }
 
-.postContentContainer{
-    height: 600px;
-    overflow-y: scroll;   
+.postContentContainer {
+    height: calc(90vh - 22px);
+    overflow-y: auto;
 }
 
-.postContentHeader{
+.postContentHeader {
     height: 32px;
     border-bottom: 1px solid lightgrey;
     padding: 6px;
@@ -35,30 +34,33 @@
 
 
 
-.postContent{
+.postContent {
     position: relative;
     padding-top: 12px;
     margin-left: 56px;
     min-height: 80px;
 
-    .postHeader{
-        &:hover{
+    .postHeader {
+        &:hover {
             background-color: rgba(12, 12, 12, 0.15);
         }
     }
-    .post{
+
+    .post {
         padding-top: 12px;
-        &:hover{
+
+        &:hover {
             background-color: rgba(12, 12, 12, 0.15);
         }
     }
-    span{
+
+    span {
         font-weight: bold;
     }
-    
+
 }
 
-.userPic{
+.userPic {
     position: absolute;
     top: 12px;
     left: -48px;
@@ -68,13 +70,12 @@
     border-radius: 8px;
 }
 
-.messageBox{
+.messageBox {
     width: calc(100% - 48px);
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: gray;
     border-radius: 8px;
     margin: 24px;
-    
+
 }
