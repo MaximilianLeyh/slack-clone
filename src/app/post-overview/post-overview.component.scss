@@ -1,6 +1,8 @@
 .postsOverview{
-    width: 600px;
+    width: auto;
+    height: 100%;
     background-color: white;
+    overflow-y: auto;
     
     
 }
@@ -20,7 +22,17 @@
     }
 }
 
+.postContentContainer{
+    height: 600px;
+    overflow-y: scroll;   
+}
 
+.postContentHeader{
+    height: 32px;
+    border-bottom: 1px solid lightgrey;
+    padding: 6px;
+    border-right: 1px solid lightgrey;
+}
 
 .postContent{
     position: relative;

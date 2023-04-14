@@ -55,10 +55,8 @@
 
 
 .router-container {
-    padding-left: 56px;
-    padding-right: 56px;
-    padding-top: 16px;
     display: flex;
+    height: 100%;
 
     .logo {
         max-width: 100%;
@@ -120,6 +118,8 @@ mat-expansion-panel {
 
 
 .example-sidenav-content {
+    height: 100%;
+    overflow: hidden;
 
     img {
         width: 40px;

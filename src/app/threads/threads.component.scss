@@ -1,0 +1,80 @@
+.threads{
+    width: 300px;
+    background-color: white;
+    overflow-y: auto;
+    
+    
+}
+
+.header{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    padding-top: 12px;
+    margin-left: 56px;
+    min-height: 80px;
+
+    border-bottom: 2px solid lightgrey;
+    
+    span{
+        font-weight: bold;
+    }
+}
+
+.postContentContainer{
+    height: 600px;
+    overflow-y: scroll;   
+}
+
+.postContentHeader{
+    height: 32px;
+    border-bottom: 1px solid lightgrey;
+    padding: 6px;
+    border-right: 1px solid lightgrey;
+}
+
+
+
+.postContent{
+    position: relative;
+    padding-top: 12px;
+    margin-left: 56px;
+    min-height: 80px;
+
+    .postHeader{
+        &:hover{
+            background-color: rgba(12, 12, 12, 0.15);
+        }
+    }
+    .post{
+        padding-top: 12px;
+        &:hover{
+            background-color: rgba(12, 12, 12, 0.15);
+        }
+    }
+    span{
+        font-weight: bold;
+    }
+    
+}
+
+.userPic{
+    position: absolute;
+    top: 12px;
+    left: -48px;
+    height: 42px;
+    width: 42px;
+    background-color: blueviolet;
+    border-radius: 8px;
+}
+
+.messageBox{
+    width: calc(100% - 48px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: gray;
+    border-radius: 8px;
+    margin: 24px;
+    
+}
