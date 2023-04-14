@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./post-overview.component.scss']
 })
 export class PostOverviewComponent {
+  headerTitle: string = '# filledFromDB';
 
 }
