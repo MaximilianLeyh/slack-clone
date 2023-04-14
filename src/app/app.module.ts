@@ -29,6 +29,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { HomeComponent } from './home/home.component';
 import { PostOverviewComponent } from './post-overview/post-overview.component';
 import { ThreadsComponent } from './threads/threads.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { ThreadsComponent } from './threads/threads.component';
     FormsModule,
     MatCardModule,
     MatMenuModule,
+    MatExpansionModule,
     MatProgressBarModule,
     AngularFirestoreModule,
     AngularFireModule.initializeApp(environment.firebase),

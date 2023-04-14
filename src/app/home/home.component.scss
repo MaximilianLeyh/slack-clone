@@ -7,28 +7,29 @@
 }
 
 .sidenav {
-    width: 300px;
+    width: 301px;
+    background-color: rgb(84,21,84);
 }
 
 .logo-container {
-    border-bottom: 1px solid rgba(0 ,0 ,0 ,0.04);
-    min-height: 56px;
+    
+    min-height: 63px;
     display: flex;
     align-items: center;
-    padding-left: 16px;
+    padding-left: 23px;
     padding-right: 16px;
+    background-color: rgb(84,21,84);
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
 }
 
-mat-toolbar, mat-toolbar-row {
-    min-height: 56px;
-    height: 56px;
-}
 
 .menu-items {
-    list-style-type: none;
     padding: 0px;
     margin: 0px;
-
+    border: 1px solid rgb(0, 0, 0, 0.5);
+    
     li {
        padding-left: 16px;
        padding-right: 16px;
@@ -42,7 +43,7 @@ mat-toolbar, mat-toolbar-row {
         }
 
         &:hover {
-            background-color: rgba(0 ,0 ,0 ,0.04);
+            background-color: rgb(50, 12, 53);
        }
 
        &:focus {
@@ -50,6 +51,8 @@ mat-toolbar, mat-toolbar-row {
        }
     }
 }
+
+
 
 .router-container {
     padding-left: 56px;
@@ -61,4 +64,105 @@ mat-toolbar, mat-toolbar-row {
         max-width: 100%;
         height: 48px;
     }
+}
+
+.searchbar-Container {
+    display: flex;
+   align-items: center;
+    gap: 10px;
+
+    mat-icon {
+        cursor: pointer;
+    }
+}
+
+.searchbar {
+    width: 50vw;
+    height: 30px;
+    border-radius: 8px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.mat-toolbar {
+    background-color: rgb(53,14,53);
+    color: white;
+    height: 61px;
+    border: 1px solid rgb(0, 0, 0, 0.5);
+    
+}
+
+.header-with-icon {
+    align-items: center;
+    padding-left: 20px;
+    height: 49px;
+    flex-direction: row;
+    gap: 10px;
+    border-radius: 0px;
+}
+
+
+mat-expansion-panel {
+    background-color: rgb(84,21,84);
+    color: white;
+    border-radius: 0px;
+    
+    
+    &:hover {
+        background-color: rgb(146, 60, 146);
+    }
+}
+
+.mat-expansion-panel-header-title {
+    color: white;
+}
+
+
+
+.example-sidenav-content {
+
+    img {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+.searchbar-Container {
+
+    mat-icon {
+        &:hover {
+            color: rgb(163, 163, 163);  
+        }
+    }
+    input {
+        margin-right: 150px;
+    }
+}
+
+.add-channel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    button {
+        &:hover {
+            background-color: rgb(201, 159, 199); 
+        }
+    }
+}
+
+.add-chat {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    button {
+        &:hover {
+            background-color: rgb(201, 159, 199); 
+        }
+    }
+}
+
+.mat-expansion-panel-header-description, .mat-expansion-indicator::after {
+    color: white;
 }
