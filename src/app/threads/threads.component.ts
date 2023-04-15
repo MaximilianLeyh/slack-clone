@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./threads.component.scss']
 })
 export class ThreadsComponent {
-  showThreads = false;
+  showThreads = true;
 
 }
