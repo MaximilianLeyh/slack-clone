@@ -1,9 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
+import { StartScreenComponent } from './start-screen/start-screen.component';
+
 
 const routes: Routes = [
-  {path: '', component: HomeComponent},
+  {path: '', component: StartScreenComponent},
+  {path: 'home', component: HomeComponent}
 ];
 
 @NgModule({

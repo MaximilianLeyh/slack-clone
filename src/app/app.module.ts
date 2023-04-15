@@ -12,7 +12,6 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { FormsModule } from '@angular/forms';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
@@ -30,13 +29,19 @@ import { HomeComponent } from './home/home.component';
 import { PostOverviewComponent } from './post-overview/post-overview.component';
 import { ThreadsComponent } from './threads/threads.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { StartScreenComponent } from './start-screen/start-screen.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent ,
       HomeComponent,
       PostOverviewComponent,
-      ThreadsComponent
+      ThreadsComponent,
+      StartScreenComponent,
+      LoginComponent,
+      RegisterComponent
     ],
 
   imports: [
@@ -52,7 +57,6 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatDialogModule,
     MatInputModule,
     MatFormFieldModule,
-    MatDatepickerModule,
     MatNativeDateModule,
     FormsModule,
     MatCardModule,
