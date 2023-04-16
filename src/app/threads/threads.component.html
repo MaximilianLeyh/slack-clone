@@ -1,6 +1,9 @@
 <div class="threads" *ngIf="showThreads">
     <div class="postContentHeader">
         <span># threads</span>
+        <button (click)="closeThreads()">
+            <mat-icon matSuffix>close</mat-icon>
+        </button>
     </div>
     <div class="postContentContainer">
         <div class="postContent">

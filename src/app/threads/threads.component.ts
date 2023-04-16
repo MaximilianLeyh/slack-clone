@@ -8,4 +8,8 @@ import { Component } from '@angular/core';
 export class ThreadsComponent {
   showThreads = true;
 
+  closeThreads(){
+    this.showThreads = false;
+  }
+
 }

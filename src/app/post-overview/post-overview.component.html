@@ -1,6 +1,6 @@
 <div class="postsOverview">
     <div class="postContentHeader">
-        <span># channels</span>
+        <span>#{{ activeConversationId }}</span>
     </div>
     <div class="postContentContainer">
         <div class="conversationInfo">
@@ -89,9 +89,11 @@
     </div>
     <div class="messageBox">
         <mat-form-field appearance="outline">
-            <mat-label>Nachtricht an ....</mat-label>
-            <textarea matInput></textarea>
-            <mat-icon matSuffix>send</mat-icon>
+            <mat-label>Nachtricht an {{ activeConversationId }}</mat-label>
+            <textarea [(ngModel)]="post.message" [disabled]="loading" matInput>{{emptyInput}}</textarea>
+            <button (click)="savePost()">
+                <mat-icon matSuffix>send</mat-icon>
+            </button>
         </mat-form-field>
     </div>
 </div>

@@ -26,10 +26,19 @@
 }
 
 .postContentHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     height: 32px;
     border-bottom: 1px solid lightgrey;
     padding: 6px;
     border-right: 1px solid lightgrey;
+
+    Button{
+        background-color: white;
+        border: none;
+        cursor: pointer;
+    }
 }
 
 

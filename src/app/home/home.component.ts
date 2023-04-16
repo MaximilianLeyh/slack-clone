@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
   panelOpenState = false;
+  activeUserId:string = 'testUserId';
+  activeConversationId:string = 'testConversationId'
 }
