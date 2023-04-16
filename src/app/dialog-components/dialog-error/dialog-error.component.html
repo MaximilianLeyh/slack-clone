@@ -1,0 +1,9 @@
+<div class="error-container">
+    <h1>Ups, something went wrong</h1>
+    <div class="errBox">
+        <div>
+           {{ errorMessage }}
+        </div>
+        <button mat-raised-button mat-dialog-close (click)="closeDialog()" [ngStyle]="{'width': '115px', 'display':'flex', 'justify-content':'center'}"> Back</button>
+    </div>
+</div>

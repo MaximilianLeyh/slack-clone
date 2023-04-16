@@ -13,7 +13,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatNativeDateModule } from '@angular/material/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
@@ -32,6 +32,9 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { StartScreenComponent } from './start-screen/start-screen.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { DialogErrorComponent } from './dialog-components/dialog-error/dialog-error.component';
+import { DialogSuccessMessageComponent } from './dialog-components/dialog-success-message/dialog-success-message.component';
+
 
 @NgModule({
   declarations: [
@@ -41,7 +44,9 @@ import { RegisterComponent } from './register/register.component';
       ThreadsComponent,
       StartScreenComponent,
       LoginComponent,
-      RegisterComponent
+      RegisterComponent,
+      DialogErrorComponent,
+      DialogSuccessMessageComponent,
     ],
 
   imports: [
@@ -61,6 +66,7 @@ import { RegisterComponent } from './register/register.component';
     FormsModule,
     MatCardModule,
     MatMenuModule,
+    ReactiveFormsModule,
     MatExpansionModule,
     MatProgressBarModule,
     AngularFirestoreModule,
