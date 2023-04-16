@@ -1,5 +1,6 @@
 export class Post {
     userId: string;   //Id of the  user
+    isRead: string[];   //userId's of useres who read
     conversationId: string; //name of channel or chat
     conversationType: string; //channel or chat
     timeStamp: number;  //timestamp 
@@ -9,6 +10,7 @@ export class Post {
 
     constructor(obj?: any) {
         this.userId = obj ? obj.userId : '';
+        this.isRead = obj ? obj.isRead : '';
         this.conversationId = obj ? obj.conversationId : '';
         this.conversationType = obj ? obj.conversationType : '';
         this.timeStamp = obj ? obj.timeStamp : '';
@@ -20,6 +22,7 @@ export class Post {
     public toJSON() {
         return {
             userId: this.userId,
+            isRead: this.isRead,
             conversationId: this.conversationId,
             conversationType: this.conversationType,
             timeStamp: this.timeStamp,
