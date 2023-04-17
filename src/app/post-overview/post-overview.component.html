@@ -90,7 +90,7 @@
     <div class="messageBox">
         <mat-form-field appearance="outline">
             <mat-label>Nachtricht an {{ activeConversationId }}</mat-label>
-            <textarea [(ngModel)]="post.message" [disabled]="loading" matInput>{{emptyInput}}</textarea>
+            <textarea [(ngModel)]="message" [disabled]="loading" matInput>{{emptyInput}}</textarea>
             <button (click)="savePost()">
                 <mat-icon matSuffix>send</mat-icon>
             </button>
