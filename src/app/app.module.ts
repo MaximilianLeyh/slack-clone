@@ -34,6 +34,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { DialogErrorComponent } from './dialog-components/dialog-error/dialog-error.component';
 import { DialogSuccessMessageComponent } from './dialog-components/dialog-success-message/dialog-success-message.component';
+import { UserSettingsComponent } from './user-settings/user-settings.component';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { DialogSuccessMessageComponent } from './dialog-components/dialog-succes
       RegisterComponent,
       DialogErrorComponent,
       DialogSuccessMessageComponent,
+      UserSettingsComponent,
     ],
 
   imports: [

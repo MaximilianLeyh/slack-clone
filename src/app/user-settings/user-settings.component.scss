@@ -1,0 +1,56 @@
+.main-content {
+    padding: unset;
+
+    mat-card {
+        width: 250px;
+        background-color: white;
+        padding: unset;
+        position: absolute;
+        top: 55px;
+        right: 10px;
+        border-radius: 1px;
+        padding: 10px;
+
+        .user-info-box {
+            display: flex;
+            align-items: center;
+            color: white;
+            gap: 15px;
+
+            mat-card-title {
+                font-size: 20px;
+                margin: unset;
+            }
+
+            .user-info {
+                display: flex;
+                flex-direction: column;
+
+                .online-status {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                }
+
+                .dot-sidenav {
+                    position: unset;
+                    outline: black;
+                }
+            }
+        }
+
+
+        .btn-container {
+            justify-content: flex-end;
+            button {
+                background-color: blueviolet;
+                color: white;
+
+                &:hover {
+                    background-color: rgb(185, 112, 253);
+                }
+            }
+        }
+    }
+
+}

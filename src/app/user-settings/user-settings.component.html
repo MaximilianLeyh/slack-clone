@@ -1,0 +1,34 @@
+<div class="main-content">
+    <mat-card>
+      <div class="user-info-box">
+        <div class="img-container">
+          <img
+            class="profile-img"
+            src="assets/img/slack-big.svg"
+            alt="profile-img"
+          />
+        </div>
+  
+        <div class="user-info">
+          <!-- <mat-card-title *ngIf="userService.currentUser$ | async as currentUser">
+            {{ currentUser.userName }}
+          </mat-card-title> -->
+  
+          <div class="online-status">
+            <div class="dot-sidenav online"></div>
+            <span>Active</span>
+          </div>
+        </div>
+      </div>
+  
+      <div class="btn-container" mat-dialog-actions>
+        <!-- <button
+          (click)="logout(userService.currentUser)"
+          mat-button
+          cdkFocusInitial
+        >
+          Logout
+        </button> -->
+      </div>
+    </mat-card>
+  </div>

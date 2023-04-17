@@ -5,6 +5,8 @@ import { Firestore } from '@angular/fire/firestore';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Conversation } from 'src/models/conversation.class';
 import { Post } from 'src/models/post.class';
+import { MatDialog } from '@angular/material/dialog';
+import { UserSettingsComponent } from '../user-settings/user-settings.component';
 
 @Component({
   selector: 'app-home',
@@ -21,6 +23,7 @@ export class HomeComponent implements OnInit {
   constructor(
     public authService: AuthService,
     private firestore: AngularFirestore,
+    public dialog: MatDialog,
     private userService: UserService,) { }
 
   async ngOnInit() {
@@ -75,5 +78,9 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  openSettings() {
+    this.dialog.open(UserSettingsComponent);
+  }
+  
 }
 
