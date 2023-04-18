@@ -15,7 +15,8 @@
                         Channels  
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <p>#Allgemein</p>
+                <p (click)="changeActiveConversationId('Allgemein')">#Allgemein</p>
+                <p (click)="changeActiveConversationId('testConversationId')">#testConversationId</p>
                 <div class="add-channel">
                     <button mat-icon-button>
                         <mat-icon>add</mat-icon> 

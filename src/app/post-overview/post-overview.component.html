@@ -14,84 +14,22 @@
                 und dir statt. Schaue dir das Profil der Person an, um mehr über sie zu erfahren. Profil anzeigen
             </div>
         </div>
-        <div class="postContent">
+        
+        <div *ngFor="let post of home.chats" class="postContent">
             <div class="postHeader">
                 <div class="userPic">pic</div>
-                <span>Heinz Friess</span> 18:06 Uhr
+                <span>{{ post.activeUser }}</span> 18:06 Uhr
                 <div class="firstPost">
-                    Könnten wir kurz telefonieren ?
+                    {{post.message}}
                 </div>
-            </div>
-        </div>
-        <div class="postContent">
-            <div class="postHeader">
-                <div class="userPic">pic</div>
-                <span>Heinz Friess</span> 18:06 Uhr
-                <div class="firstPost">
-                    Könnten wir kurz telefonieren ?
-                </div>
-            </div>
-        </div>
-        <div class="postContent">
-            <div class="postHeader">
-                <div class="userPic">pic</div>
-                <span>Manuel Thaler</span> 18:06 Uhr
-                <div class="firstPost">
-                    Passt für mich
-                </div>
-            </div>
-            <div class="post">
-                am besten du machst aber schon eine Basisversion des PFs
-                mit deinen Frontendprojekten
-            </div>
-            <div class="post">
-                dann kann ich dir das Frontendzertifikat ausstellen
-                und dann machst du einfach mit backend weiter
-            </div>
-        </div>
-        <div class="postContent">
-            <div class="postHeader">
-                <div class="userPic">pic</div>
-                <span>Heinz Friess</span> 18:06 Uhr
-                <div class="firstPost">
-                    Mein PF ist schon eine ganz gute Basis, denke ich.
-                    https://heinzfriess.com/
-                    Ist schon bei über 80%, Hauptsächlich responsive ist noch Detailarbeit zu tun.
-                    Soll ich dann die Abgabe Funktion nutzen oder schaltest Du mir die nächsten Module frei?
-                    (bearbeitet)
-                </div>
-            </div>
-            <div class="post">
-                und klar, das Bild wird noch ein Anderes :zwinkern:
-            </div>
-        </div>
-        <div class="postContent">
-            <div class="postHeader">
-                <div class="userPic">pic</div>
-                <span>Manuel Thaler</span> 18:06 Uhr
-                <div class="firstPost">
-                    Passt für mich
-                </div>
-            </div>
-            <div class="post">
-                am besten du machst aber schon eine Basisversion des PFs
-                mit deinen Frontendprojekten
-            </div>
-            <div class="post">
-                dann kann ich dir das Frontendzertifikat ausstellen
-                und dann machst du einfach mit backend weiter
-            </div>
-            <div class="post">
-                .router-container in home.component.scss<br>
-                paddings entfernen<br>
             </div>
         </div>
     </div>
     <div class="messageBox">
         <mat-form-field appearance="outline">
             <mat-label>Nachtricht an {{ activeConversationId }}</mat-label>
-            <textarea [(ngModel)]="message" [disabled]="loading" matInput>{{emptyInput}}</textarea>
-            <button (click)="savePost()">
+            <textarea [(ngModel)]="message" [disabled]="loading" matInput></textarea>
+            <button *ngIf="message" (click)="savePost()">
                 <mat-icon matSuffix>send</mat-icon>
             </button>
         </mat-form-field>
