@@ -21,6 +21,7 @@ export class HomeComponent implements OnInit {
   chats: string[] = [];
   channels: string[] = [];
   loading: boolean = false;
+  currentUser: any= '';
 
   constructor(
     public authService: AuthService,
