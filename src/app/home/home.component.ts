@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   activeConversationId: string = 'testConversationId'
   conversations: Post[] = [];
   chats: Post[] = [];
+  currentUser: any;
 
   constructor(
     public authService: AuthService,
