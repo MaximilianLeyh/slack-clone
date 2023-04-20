@@ -31,4 +31,9 @@ export class Post {
             subPost: this.subPost
         }
     }
+
+    public getTime(){
+        let time:string = (this.timeStamp.toString().charAt(2));
+        return time
+    }
 }

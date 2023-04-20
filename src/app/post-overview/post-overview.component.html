@@ -1,6 +1,6 @@
 <div class="postsOverview">
     <div class="postContentHeader">
-        <span>#{{ activeConversationId }}</span>
+        <span>{{ activeConversationId }}</span>
     </div>
     <div class="postContentContainer">
         <div class="conversationInfo">
@@ -15,10 +15,10 @@
             </div>
         </div>
         
-        <div *ngFor="let post of home.chats" class="postContent">
+        <div *ngFor="let post of home.conversations" class="postContent">
             <div class="postHeader">
                 <div class="userPic">pic</div>
-                <span>{{ post.activeUser }}</span> 18:06 Uhr
+                <span>{{ post.activeUser }}</span> {{post.getTime()}}
                 <div class="firstPost">
                     {{post.message}}
                 </div>

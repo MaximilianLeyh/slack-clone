@@ -7,7 +7,6 @@
         <div class="logo-container">
             Slack-clone
         </div>
-
         <ul class="menu-items">
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                 <mat-expansion-panel-header class="specific-class">
@@ -15,10 +14,9 @@
                         Channels  
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <p (click)="changeActiveConversationId('Allgemein')">#Allgemein</p>
-                <p (click)="changeActiveConversationId('testConversationId')">#testConversationId</p>
+                <p *ngFor="let channel of channels" (click)="changeActiveConversationId(channel)">#{{channel}}</p>
                 <div class="add-channel">
-                    <button mat-icon-button>
+                    <button mat-icon-button (click)="openAddConversation('channel')">
                         <mat-icon>add</mat-icon> 
                       </button>
                       <span>Add channels</span>
@@ -33,9 +31,9 @@
                         Chats
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <p>Max</p>
+                <p *ngFor="let chat of chats" (click)="changeActiveConversationId(chat)">{{chat}}</p>
                 <div class="add-chat">
-                    <button mat-icon-button>
+                    <button mat-icon-button (click)="openAddConversation('chat')">
                         <mat-icon>add</mat-icon> 
                       </button>
                       <span>Add chat</span>
@@ -48,7 +46,6 @@
     <div class="example-sidenav-content">
         <mat-toolbar>
             <mat-toolbar-row>
-
                 <div class="searchbar-Container">
                     <mat-icon matPrefix>search</mat-icon>
                     <input class="searchbar" type="text" placeholder="Search messages ..." />
