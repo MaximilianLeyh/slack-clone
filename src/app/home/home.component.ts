@@ -15,13 +15,14 @@ import { DialogAddConversationComponent } from '../dialog-components/dialog-add-
 export class HomeComponent implements OnInit {
   panelOpenState = false;
   activeUserId: string = 'testUserId';
-  activeConversationId: string = 'testConversationId'
+  activeConversationId: string = '';
   conversations: Post[] = [];
   allPosts: Post[] = [];
   chats: string[] = [];
   channels: string[] = [];
   loading: boolean = false;
-  currentUser: any= '';
+  currentUser: any = '';
+  activeConversationTyp: string = 'channel';
 
   constructor(
     public authService: AuthService,
@@ -31,9 +32,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getData();
-    //console.log(this.userService.currentUser);
-    
-
     this.firestore
       .collection('conversations')
       .valueChanges({ idField: 'customIdName' })
@@ -41,9 +39,7 @@ export class HomeComponent implements OnInit {
         this.allPosts = changes;
         this.conversations = changes.sort((a, b) => { return a.timeStamp >= b.timeStamp ? 1 : -1 })
         this.updateConversations();
-      })
-
-
+      });
   };
 
   //
@@ -67,10 +63,11 @@ export class HomeComponent implements OnInit {
       }
     }
     this.conversations = filterdConversations.sort((a, b) => { return a.timeStamp >= b.timeStamp ? 1 : -1 })
-    
+
   }
 
   collectChats() {
+    this.chats = [];
     this.allPosts.forEach(post => {
       if (post.conversationType == 'chat') {
         if (!this.chats.includes(post.conversationId)) this.chats.push(post.conversationId);
@@ -80,6 +77,7 @@ export class HomeComponent implements OnInit {
   }
 
   collectChannels() {
+    this.channels = [];
     this.allPosts.forEach(post => {
       if (post.conversationType == 'channel') {
         if (!this.channels.includes(post.conversationId)) this.channels.push(post.conversationId);
@@ -91,8 +89,9 @@ export class HomeComponent implements OnInit {
     this.dialog.open(UserSettingsComponent);
   }
 
-  changeActiveConversationId(conversation: string) {
+  changeActiveConversationId(conversation: string, type: string) {
     this.activeConversationId = conversation;
+    this.activeConversationTyp = type;
     this.ngOnInit()
   }
 

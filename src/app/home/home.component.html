@@ -14,7 +14,7 @@
                         Channels  
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <p *ngFor="let channel of channels" (click)="changeActiveConversationId(channel)">#{{channel}}</p>
+                <p *ngFor="let channel of channels" (click)="changeActiveConversationId(channel, 'channel')">#{{channel}}</p>
                 <div class="add-channel">
                     <button mat-icon-button (click)="openAddConversation('channel')">
                         <mat-icon>add</mat-icon> 
@@ -31,7 +31,7 @@
                         Chats
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <p *ngFor="let chat of chats" (click)="changeActiveConversationId(chat)">{{chat}}</p>
+                <p *ngFor="let chat of chats" (click)="changeActiveConversationId(chat, 'chat')">{{chat}}</p>
                 <div class="add-chat">
                     <button mat-icon-button (click)="openAddConversation('chat')">
                         <mat-icon>add</mat-icon> 

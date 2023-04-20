@@ -3,27 +3,27 @@
         <span>{{ activeConversationId }}</span>
     </div>
     <div class="postContentContainer">
-        <div class="conversationInfo">
-            <div class="header">
-                <div class="userPic">pic</div>
-                <span>Manuel Thaler</span>
-            </div>
-            <div class="content">
-                Diese Unterhaltung findet nur zwischen
-                @Manuel Thaler
-                und dir statt. Schaue dir das Profil der Person an, um mehr über sie zu erfahren. Profil anzeigen
-            </div>
-        </div>
-        
-        <div *ngFor="let post of home.conversations" class="postContent">
-            <div class="postHeader">
-                <div class="userPic">pic</div>
-                <span>{{ post.activeUser }}</span> {{post.getTime()}}
-                <div class="firstPost">
+        <div *ngFor="let post of home.conversations">
+            <div class="conversationInfo" *ngIf="!post.subPost">
+                <div class="header">
+                    <div class="userPic">pic</div>
+                    <span>{{post.conversationId}}</span>
+                </div>
+                <div class="content">
                     {{post.message}}
                 </div>
             </div>
+            <div class="postContent" *ngIf="post.subPost">
+                <div class="postHeader">
+                    <div class="userPic">pic</div>
+                    <span>{{ post.activeUser }}</span> {{post.getTime()}}
+                    <div class="firstPost">
+                        {{post.message}}
+                    </div>
+                </div>
+            </div>
         </div>
+        
     </div>
     <div class="messageBox">
         <mat-form-field appearance="outline">
