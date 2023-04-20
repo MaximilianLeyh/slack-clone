@@ -10,9 +10,9 @@
         </div>
   
         <div class="user-info">
-          <!-- <mat-card-title *ngIf="userService.currentUser$ | async as currentUser">
+          <mat-card-title *ngIf="userService.currentUser$ | async as currentUser">
             {{ currentUser.userName }}
-          </mat-card-title> -->
+          </mat-card-title> 
   
           <div class="online-status">
             <div class="dot-sidenav online"></div>
@@ -22,13 +22,13 @@
       </div>
   
       <div class="btn-container" mat-dialog-actions>
-        <!-- <button
+        <button
           (click)="logout(userService.currentUser)"
           mat-button
           cdkFocusInitial
         >
           Logout
-        </button> -->
+        </button> 
       </div>
     </mat-card>
   </div>

@@ -13,9 +13,7 @@ export class UserService {
   currentUser: any;
   users: any = [];
   userRef: any = collection(this.firestore, 'users');
-  channelEditor: boolean = false;
-  chatEditor: boolean = false;
-  threadEditor: boolean = false;
+  
 
 
   constructor(
