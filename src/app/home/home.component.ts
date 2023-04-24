@@ -5,6 +5,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Post } from 'src/models/post.class';
 import { MatDialog } from '@angular/material/dialog';
 import { UserSettingsComponent } from '../user-settings/user-settings.component';
+import { DialogAddChannelComponent } from '../dialog-components/dialog-add-channel/dialog-add-channel.component';
 
 @Component({
   selector: 'app-home',
@@ -17,13 +18,16 @@ export class HomeComponent implements OnInit {
   activeConversationId: string = 'testConversationId'
   conversations: Post[] = [];
   chats: Post[] = [];
-  currentUser: any= '';
+  currentUser: any = '';
+  typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
+  Channels: any = [];
+  public channelName: any = [];
 
   constructor(
     public authService: AuthService,
     private firestore: AngularFirestore,
     public dialog: MatDialog,
-    private userService: UserService,) { }
+    public userService: UserService,) { }
 
   async ngOnInit() {
     this.userService.getData();
@@ -33,6 +37,7 @@ export class HomeComponent implements OnInit {
     //   this.updateChats();
     //   console.log('die chats', this.chats);
     // })
+    
     this.firestore
       .collection('conversations')
       .valueChanges({ idField: 'customIdName' })
@@ -74,5 +79,56 @@ export class HomeComponent implements OnInit {
     this.updateChats();
   }
 
+  openAddChannel() {
+    this.dialog.open(DialogAddChannelComponent);
+  }
 }
+
+
+// import firebase from 'firebase/app';
+// import 'firebase/firestore';
+
+// // Assuming you have already initialized Firebase and have a Firestore instance
+// const db = firebase.firestore();
+
+// // Interface for the conversation object
+// interface Conversation {
+//   id: string;
+//   messages: string[];
+// }
+
+// // Function to search for a message in conversations
+// const searchMessage = async (message: string): Promise<Conversation[]> => {
+//   try {
+//     // Query conversations collection to get all documents
+//     const snapshot = await db.collection('conversations').get();
+//     const conversations: Conversation[] = [];
+
+//     // Loop through each document
+//     snapshot.forEach((doc) => {
+//       const conversation = doc.data() as Conversation;
+      
+//       // Check if the conversation has the message
+//       if (conversation.messages.includes(message)) {
+//         conversations.push({ id: doc.id, ...conversation });
+//       }
+//     });
+
+//     return conversations;
+//   } catch (error) {
+//     console.error('Error searching for message:', error);
+//     throw error;
+//   }
+// };
+
+// // Usage
+// const searchTerm = 'hello';
+// searchMessage(searchTerm)
+//   .then((conversations) => {
+//     console.log('Conversations containing the message:', conversations);
+//   })
+//   .catch((error) => {
+//     console.error('Error searching for message:', error);
+//   });
+
 

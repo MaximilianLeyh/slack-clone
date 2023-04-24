@@ -10,7 +10,8 @@
           <h2>Slack-clone brings the team together wherever you are</h2>
   
           <div class="btnBox">
-            <button mat-raised-button (click)="openLogin()">
+            <button mat-fab extended (click)="openLogin()">
+              <mat-icon>login</mat-icon>
               Sign in to Slack-clone
             </button>
           </div>
@@ -19,7 +20,11 @@
   
       <div class="registerBox">
         <span>Are you new to Slack-clone?</span>
-        <a (click)="openSignUp()">Create a new Account</a>
+  
+          <button mat-fab extended (click)="openSignUp()">
+            <mat-icon>add</mat-icon>
+            Create new Account
+          </button>
       </div>
     </div>
   

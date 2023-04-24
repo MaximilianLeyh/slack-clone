@@ -8,17 +8,17 @@
 
 .sidenav {
     width: 301px;
-    background-color: rgb(84,21,84);
+    background-color: rgb(84, 21, 84);
 }
 
 .logo-container {
-    
-    min-height: 63px;
+
+    min-height: 60px;
     display: flex;
     align-items: center;
     padding-left: 23px;
     padding-right: 16px;
-    background-color: rgb(84,21,84);
+    background-color: rgb(84, 21, 84);
     color: white;
     font-size: 14px;
     font-weight: 500;
@@ -29,14 +29,14 @@
     padding: 0px;
     margin: 0px;
     border: 1px solid rgb(0, 0, 0, 0.5);
-    
+
     li {
-       padding-left: 16px;
-       padding-right: 16px;
-       height: 48px;
-       display: flex;
-       align-items: center;
-       cursor: pointer;
+        padding-left: 16px;
+        padding-right: 16px;
+        height: 48px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
 
         mat-icon {
             margin-right: 16px;
@@ -44,11 +44,11 @@
 
         &:hover {
             background-color: rgb(50, 12, 53);
-       }
+        }
 
-       &:focus {
-        outline: none;
-       }
+        &:focus {
+            outline: none;
+        }
     }
 }
 
@@ -66,20 +66,27 @@
 
 .searchbar-Container {
     display: flex;
-   align-items: center;
-    gap: 10px;
+    align-items: center;
+    gap: 20px;
 
     mat-icon {
         cursor: pointer;
+
+        &:hover {
+            color: rgb(163, 163, 163);
+        }
     }
 
     img {
         cursor: pointer;
+        position: absolute;
+        right: 20px;
+        top: 12px;
     }
 }
 
 .searchbar {
-    width: 50vw;
+    width: 200px;
     height: 30px;
     border-radius: 8px;
     padding-left: 10px;
@@ -87,11 +94,11 @@
 }
 
 .mat-toolbar {
-    background-color: rgb(53,14,53);
+    background-color: rgb(84, 21, 84);
     color: white;
     height: 61px;
     border: 1px solid rgb(0, 0, 0, 0.5);
-    
+
 }
 
 .header-with-icon {
@@ -105,21 +112,32 @@
 
 
 mat-expansion-panel {
-    background-color: rgb(84,21,84);
+    background-color: rgb(84, 21, 84);
     color: white;
     border-radius: 0px;
     
-    
     &:hover {
-        background-color: rgb(146, 60, 146);
+        background-color: rgb(119, 31, 101);
     }
+}
+
+.listItem {
+    color: white;
+    padding-left: 20px;
+}
+
+mat-list-option[aria-selected="true"] {
+    background: rgb(17, 100, 163);
+}
+
+mat-list-option {
+    padding: 0px;
+
 }
 
 .mat-expansion-panel-header-title {
     color: white;
 }
-
-
 
 .example-sidenav-content {
     height: 100%;
@@ -128,18 +146,7 @@ mat-expansion-panel {
     img {
         width: 40px;
         height: 40px;
-    }
-}
-
-.searchbar-Container {
-
-    mat-icon {
-        &:hover {
-            color: rgb(163, 163, 163);  
-        }
-    }
-    input {
-        margin-right: 150px;
+        cursor: pointer;
     }
 }
 
@@ -150,7 +157,7 @@ mat-expansion-panel {
 
     button {
         &:hover {
-            background-color: rgb(201, 159, 199); 
+            background-color: rgb(201, 159, 199);
         }
     }
 }
@@ -162,11 +169,30 @@ mat-expansion-panel {
 
     button {
         &:hover {
-            background-color: rgb(201, 159, 199); 
+            background-color: rgb(201, 159, 199);
         }
     }
 }
 
-::ng-deep .specific-class > .mat-expansion-indicator:after {
+::ng-deep .specific-class>.mat-expansion-indicator:after {
     color: white;
+}
+
+::ng-deep .mat-expansion-panel-body {
+    padding: 0 !important;
+}
+
+.displayNone {
+    display: none;
+}
+
+@media(max-width:1000px) {
+
+    .sidenav {
+        display: none;
+    }
+
+    .displayNone {
+        display: flex;
+    }
 }

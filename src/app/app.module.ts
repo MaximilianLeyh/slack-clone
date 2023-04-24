@@ -35,6 +35,9 @@ import { RegisterComponent } from './register/register.component';
 import { DialogErrorComponent } from './dialog-components/dialog-error/dialog-error.component';
 import { DialogSuccessMessageComponent } from './dialog-components/dialog-success-message/dialog-success-message.component';
 import { UserSettingsComponent } from './user-settings/user-settings.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MatListModule } from '@angular/material/list';
+import { DialogAddChannelComponent } from './dialog-components/dialog-add-channel/dialog-add-channel.component';
 
 
 @NgModule({
@@ -49,6 +52,7 @@ import { UserSettingsComponent } from './user-settings/user-settings.component';
       DialogErrorComponent,
       DialogSuccessMessageComponent,
       UserSettingsComponent,
+      DialogAddChannelComponent,
     ],
 
   imports: [
@@ -56,6 +60,7 @@ import { UserSettingsComponent } from './user-settings/user-settings.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MatToolbarModule,
+    MatListModule,
     MatSidenavModule,
     MatIconModule,
     MatButtonModule,
@@ -67,6 +72,7 @@ import { UserSettingsComponent } from './user-settings/user-settings.component';
     MatNativeDateModule,
     FormsModule,
     MatCardModule,
+    HttpClientModule,
     MatMenuModule,
     ReactiveFormsModule,
     MatExpansionModule,

@@ -1,0 +1,60 @@
+.dialog-container{
+    max-width: 400px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: white;
+    border-radius: 10px;
+
+    .top-container {
+
+        .header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+
+            h1{
+                font-size: 30px;
+            }
+
+            mat-icon {
+                cursor: pointer;
+            }
+        }
+    }
+
+
+
+    .btn-container {
+        justify-content: end;
+
+        button{
+            background-color: gray;
+            color: #B7B8B9;
+            border-radius: 5px;
+
+            &:disabled {
+                filter: brightness(0.6);
+            }
+        }
+    } 
+
+    mat-form-field{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media (max-width:450px) {
+    .dialog-container {
+        .top-container {
+            font-size: 20px;
+
+            h1 {
+                font-size: 25px;
+            }
+        }
+    }
+}

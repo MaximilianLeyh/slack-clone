@@ -1,20 +1,18 @@
 .main-content {
     padding: unset;
+    width: 250px;
+    height: 174px;
 
     mat-card {
-        width: 250px;
-        background-color: white;
-        padding: unset;
-        position: absolute;
-        top: 55px;
-        right: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         border-radius: 1px;
         padding: 10px;
 
         .user-info-box {
             display: flex;
             align-items: center;
-            color: white;
             gap: 15px;
 
             mat-card-title {
