@@ -20,6 +20,11 @@ export class HomeComponent implements OnInit {
   conversations: Post[] = [];
   chats: Post[] = [];
   currentUser: any= '';
+  channels: any;
+  allPosts: any;
+  typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
+  activeConversationTyp: string;
+  
 
   constructor(
     public authService: AuthService,
@@ -92,7 +97,7 @@ export class HomeComponent implements OnInit {
     this.dialog.open(UserSettingsComponent);
   }
 
-  changeActiveConversationId(conversation: string, type: string) {
+  changeActiveConversationId(conversation: any, type: string) {
     this.activeConversationId = conversation;
     this.activeConversationTyp = type;
     this.ngOnInit()
