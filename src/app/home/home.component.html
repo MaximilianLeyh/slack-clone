@@ -21,7 +21,7 @@
                     Channel selected: {{channels.selectedOptions.hasValue() ? channels.selectedOptions.selected[0].value : 'None'}}
                   </p>
                 <div class="add-channel">
-                    <button mat-icon-button>
+                    <button (click)="openAddChannel()" mat-icon-button>
                         <mat-icon>add</mat-icon> 
                       </button>
                       <span>Add channels</span>
