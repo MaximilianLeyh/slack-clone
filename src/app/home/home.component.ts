@@ -22,7 +22,6 @@ export class HomeComponent implements OnInit {
   currentUser: any= '';
   channels: Post[] = [];
   allPosts: any;
-  typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
   activeConversationTyp: string;
   
 
@@ -111,6 +110,10 @@ export class HomeComponent implements OnInit {
 
   openAddChannel() {
     this.dialog.open(DialogAddChannelComponent);
+  }
+
+  openWorkspace() {
+    document.getElementById('sidenav').classList.remove('display:none');
   }
 }
 

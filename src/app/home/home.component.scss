@@ -178,6 +178,18 @@ mat-list-option {
     }
 }
 
+.add-chat {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    button {
+        &:hover {
+            background-color: rgb(201, 159, 199);
+        }
+    }
+}
+
 ::ng-deep .specific-class>.mat-expansion-indicator:after {
     color: white;
 }
@@ -190,11 +202,11 @@ mat-list-option {
     display: none;
 }
 
-@media(max-width:1000px) {
+.full-width {
+    width: 100%;
+}
 
-    .sidenav {
-        display: none;
-    }
+@media(max-width:1000px) {
 
     .displayNone {
         display: flex;
