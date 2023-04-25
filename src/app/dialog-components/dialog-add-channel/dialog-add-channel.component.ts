@@ -4,6 +4,7 @@ import { Firestore, getFirestore, collection, doc, setDoc, addDoc } from '@angul
 import { Router } from '@angular/router';
 import { Channel } from 'src/models/channels.class';
 import { timestamp } from 'rxjs';
+import { Post } from 'src/models/post.class';
 
 @Component({
   selector: 'app-dialog-add-channel',
@@ -11,24 +12,35 @@ import { timestamp } from 'rxjs';
   styleUrls: ['./dialog-add-channel.component.scss']
 })
 export class DialogAddChannelComponent implements OnInit {
-  channel = new Channel()
-  channelName: string;
+  loading = false;
+  post = new Post();
+  activeUserId = 'addComponente';
+  conversationType = '';
 
   constructor(
-    private angularFirestore: AngularFirestore,
-    private firestore: Firestore,
+    private firestore: AngularFirestore,
     private router: Router
   ) { }
 
   ngOnInit(): void {
   }
 
-  //**creates new Channel if not existing yet */
-  async createChannel() {
-    if (!this.channel.channelDescription) { this.channel.channelDescription = '-' }
-    this.channel.created = new Date();
-    this.angularFirestore
-      .collection('channels')
-      .add(this.channel.toJSON());
+  createConversation(conversationType: string) {
+    this.loading = true;
+    let post = new Post();
+    post.timeStamp = new Date().getTime();
+    post.userId = this.activeUserId;
+    post.conversationId = this.post.conversationId;
+    post.conversationType = conversationType;
+    post.subPost = false;
+    post.message = this.post.message;
+    this.firestore
+      .collection('conversations')
+      .add(post.toJSON())
+      .then((result: any) => {
+        this.loading = false;
+        //this. message = '';
+      });
+  
   }
 }

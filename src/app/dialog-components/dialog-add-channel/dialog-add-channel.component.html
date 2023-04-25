@@ -17,7 +17,7 @@
           <input
             disable="loading"
             matInput
-            [(ngModel)]="channel.channelName"
+            [(ngModel)]="post.conversationId"
             placeholder="e.g. budget planning"
           />
         </mat-form-field>
@@ -28,7 +28,7 @@
           <input
             disable="loading"
             matInput
-            [(ngModel)]="channel.channelDescription"
+            [(ngModel)]="post.message"
             placeholder="What is this channel about?"
           />
         </mat-form-field>
@@ -38,8 +38,8 @@
     <div class="btn-container" mat-dialog-actions>
       <button
         disable="loading"
-        [disabled]="!channel.channelName"
-        (click)="createChannel()"
+        [disabled]="!post.conversationId"
+        (click)="createConversation('channel')"
         mat-button
         cdkFocusInitial
       >

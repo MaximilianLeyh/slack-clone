@@ -7,27 +7,24 @@
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                 <mat-expansion-panel-header class="specific-class">
                     <mat-panel-title>
-                        Channels  
+                        Channels
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <mat-selection-list hideSingleSelectionIndicator #channels [multiple]="false">
-                    <mat-list-option *ngFor="let shoe of typesOfShoes" [value]="shoe">
-                    <span class="listItem">{{shoe}}
-                    </span> 
+                <mat-selection-list hideSingleSelectionIndicator #_channels [multiple]="false">
+                    <mat-list-option *ngFor="let channel of channels" class="listItem">
+                        <span class="listItem" (click)="changeActiveConversationId(channel, 'chat')">{{channel}}</span>
                     </mat-list-option>
-                    
-                  </mat-selection-list>
-                  <p>
-                    Channel selected: {{channels.selectedOptions.hasValue() ? channels.selectedOptions.selected[0].value : 'None'}}
-                  </p>
+
+                </mat-selection-list>
+                
                 <div class="add-channel">
                     <button (click)="openAddChannel()" mat-icon-button>
-                        <mat-icon>add</mat-icon> 
-                      </button>
-                      <span>Add channels</span>
+                        <mat-icon>add</mat-icon>
+                    </button>
+                    <span>Add channels</span>
                 </div>
             </mat-expansion-panel>
-            
+
         </ul>
         <ul class="menu-items">
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
@@ -39,11 +36,11 @@
                 <p *ngFor="let chat of chats" (click)="changeActiveConversationId(chat, 'chat')">{{chat}}</p>
                 <div class="add-chat">
                     <button mat-icon-button (click)="openAddConversation('chat')">
-                        <mat-icon>add</mat-icon> 
-                      </button>
-                      <span>Add chat</span>
+                        <mat-icon>add</mat-icon>
+                    </button>
+                    <span>Add chat</span>
                 </div>
-               
+
             </mat-expansion-panel>
         </ul>
     </mat-drawer>
@@ -54,16 +51,19 @@
                 <div class="searchbar-Container">
                     <button class="displayNone" mat-mini-fab matTooltip="open Workspace" color="basic">
                         <mat-icon>keyboard_double_arrow_right</mat-icon>
-                      </button>
+                    </button>
                     <mat-icon matPrefix>search</mat-icon>
                     <input class="searchbar" matInput placeholder="Search messages">
-                    <img src="./assets/img/slack-big.svg" (click)="openSettings()"  matTooltip="{{ currentUser.userName }}" *ngIf="userService.currentUser$ | async as currentUser" alt="">
+                    <img src="./assets/img/slack-big.svg" (click)="openSettings()"
+                        matTooltip="{{ currentUser.userName }}" *ngIf="userService.currentUser$ | async as currentUser"
+                        alt="">
                 </div>
             </mat-toolbar-row>
         </mat-toolbar>
 
         <div class="router-container">
-            <app-post-overview [activeUserId]="activeUserId" [activeConversationId]="activeConversationId"></app-post-overview> 
+            <app-post-overview [activeUserId]="activeUserId"
+                [activeConversationId]="activeConversationId"></app-post-overview>
             <app-threads></app-threads>
         </div>
     </div>

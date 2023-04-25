@@ -6,7 +6,7 @@
         <div *ngFor="let post of home.conversations">
             <div class="conversationInfo" *ngIf="!post.subPost">
                 <div class="header">
-                    <div class="userPic">pic</div>
+                    <div class="userPic" *ngIf="!(post.conversationType == 'channel')">pic</div>
                     <span>{{post.conversationId}}</span>
                 </div>
                 <div class="content">

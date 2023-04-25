@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
   conversations: Post[] = [];
   chats: Post[] = [];
   currentUser: any= '';
-  channels: any;
+  channels: Post[] = [];
   allPosts: any;
   typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
   activeConversationTyp: string;
