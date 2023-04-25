@@ -35,7 +35,7 @@ export class PostOverviewComponent implements OnInit {
     this.post.userId = this.activeUserId;
     this.post.conversationId = this.activeConversationId;
     this.post.conversationType = 'chat';
-    this.post.subPost = false;
+    this.post.subPost = true;
     this.post.message = this.message;
     this.firstore
       .collection('conversations')

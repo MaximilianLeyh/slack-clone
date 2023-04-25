@@ -3,8 +3,9 @@ import { UserService } from '../services/user.service';
 import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Post } from 'src/models/post.class';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { UserSettingsComponent } from '../user-settings/user-settings.component';
+import { DialogAddConversationComponent } from '../dialog-components/dialog-add-conversation/dialog-add-conversation.component';
 import { DialogAddChannelComponent } from '../dialog-components/dialog-add-channel/dialog-add-channel.component';
 
 @Component({
@@ -15,13 +16,10 @@ import { DialogAddChannelComponent } from '../dialog-components/dialog-add-chann
 export class HomeComponent implements OnInit {
   panelOpenState = false;
   activeUserId: string = 'testUserId';
-  activeConversationId: string = 'testConversationId'
+  activeConversationId: string = '';
   conversations: Post[] = [];
   chats: Post[] = [];
-  currentUser: any = '';
-  typesOfShoes: string[] = ['Boots', 'Clogs', 'Loafers', 'Moccasins', 'Sneakers'];
-  Channels: any = [];
-  public channelName: any = [];
+  currentUser: any= '';
 
   constructor(
     public authService: AuthService,
@@ -29,7 +27,7 @@ export class HomeComponent implements OnInit {
     public dialog: MatDialog,
     public userService: UserService,) { }
 
-  async ngOnInit() {
+  ngOnInit() {
     this.userService.getData();
 
     // await this.firestore.collection('conversations').valueChanges().forEach(conv => {
@@ -37,24 +35,24 @@ export class HomeComponent implements OnInit {
     //   this.updateChats();
     //   console.log('die chats', this.chats);
     // })
-    
     this.firestore
       .collection('conversations')
       .valueChanges({ idField: 'customIdName' })
       .subscribe((changes: any) => {
-        this.conversations = changes;
+        this.allPosts = changes;
         this.conversations = changes.sort((a, b) => { return a.timeStamp >= b.timeStamp ? 1 : -1 })
-        this.updateChats();
-      })
-
-
+        this.updateConversations();
+      });
   };
 
-  updateChats() {
-    let chats = [];
+  //
+  updateConversations() {
+    this.collectChats();
+    this.collectChannels();
+    let filterdConversations = [];
     for (let i = 0; i < this.conversations.length; i++) {
       const element = this.conversations[i];
-      if (element['conversationType'] == 'chat' && element['conversationId'] == this.activeConversationId) {
+      if (element['conversationId'] == this.activeConversationId) {
         let _post = new Post();
         _post.activeUser = element.activeUser;
         _post.conversationId = element.conversationId;
@@ -64,19 +62,46 @@ export class HomeComponent implements OnInit {
         _post.subPost = element.subPost;
         _post.timeStamp = element.timeStamp;
         _post.userId = element.userId;
-        chats.push(_post);
+        filterdConversations.push(_post);
       }
     }
-    this.chats = chats.sort((a, b) => { return a.timeStamp >= b.timeStamp ? 1 : -1 })
+    this.conversations = filterdConversations.sort((a, b) => { return a.timeStamp >= b.timeStamp ? 1 : -1 })
+
+  }
+
+  collectChats() {
+    this.chats = [];
+    this.allPosts.forEach(post => {
+      if (post.conversationType == 'chat') {
+        if (!this.chats.includes(post.conversationId)) this.chats.push(post.conversationId);
+      }
+
+    });
+  }
+
+  collectChannels() {
+    this.channels = [];
+    this.allPosts.forEach(post => {
+      if (post.conversationType == 'channel') {
+        if (!this.channels.includes(post.conversationId)) this.channels.push(post.conversationId);
+      }
+    });
   }
 
   openSettings() {
     this.dialog.open(UserSettingsComponent);
   }
 
-  changeActiveConversationId(conversation: string) {
+  changeActiveConversationId(conversation: string, type: string) {
     this.activeConversationId = conversation;
-    this.updateChats();
+    this.activeConversationTyp = type;
+    this.ngOnInit()
+  }
+
+  openAddConversation(conversationType: string) {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = { convType: conversationType }
+    this.dialog.open(DialogAddConversationComponent, dialogConfig);
   }
 
   openAddChannel() {

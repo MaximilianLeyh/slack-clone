@@ -3,7 +3,6 @@
         <div class="logo-container">
             Slack-clone
         </div>
-
         <ul class="menu-items">
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                 <mat-expansion-panel-header class="specific-class">
@@ -22,8 +21,8 @@
                     Channel selected: {{channels.selectedOptions.hasValue() ? channels.selectedOptions.selected[0].value : 'None'}}
                   </p>
                 <div class="add-channel">
-                    <button mat-mini-fab matTooltip="Primary" color="primary" (click)="openAddChannel()">
-                        <mat-icon>add</mat-icon>
+                    <button mat-icon-button>
+                        <mat-icon>add</mat-icon> 
                       </button>
                       <span>Add channels</span>
                 </div>
@@ -37,9 +36,9 @@
                         Chats
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <p>Max</p>
+                <p *ngFor="let chat of chats" (click)="changeActiveConversationId(chat, 'chat')">{{chat}}</p>
                 <div class="add-chat">
-                    <button mat-icon-button>
+                    <button mat-icon-button (click)="openAddConversation('chat')">
                         <mat-icon>add</mat-icon> 
                       </button>
                       <span>Add chat</span>

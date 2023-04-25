@@ -38,6 +38,7 @@ import { UserSettingsComponent } from './user-settings/user-settings.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatListModule } from '@angular/material/list';
 import { DialogAddChannelComponent } from './dialog-components/dialog-add-channel/dialog-add-channel.component';
+import { DialogAddConversationComponent } from './dialog-components/dialog-add-conversation/dialog-add-conversation.component';
 
 
 @NgModule({
@@ -53,6 +54,7 @@ import { DialogAddChannelComponent } from './dialog-components/dialog-add-channe
       DialogSuccessMessageComponent,
       UserSettingsComponent,
       DialogAddChannelComponent,
+      DialogAddConversationComponent
     ],
 
   imports: [
