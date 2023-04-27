@@ -13,7 +13,7 @@
 
 .logo-container {
 
-    min-height: 60px;
+    height: 63px;
     display: flex;
     align-items: center;
     padding-left: 23px;
@@ -24,6 +24,13 @@
     font-weight: 500;
 }
 
+mat-selection-list {
+    padding: 0px;
+}
+
+.channelPannel {
+    border-bottom: 1px solid rgb(0, 0, 0, 0.5);
+}
 
 .menu-items {
     padding: 0px;
@@ -204,6 +211,31 @@ mat-list-option {
 
 .full-width {
     width: 100%;
+}
+
+.dotNavOnline {
+    display: flex;
+    position: absolute;
+    right: 24px;
+    top: 36px;
+    outline: 3px solid #000;
+    height: 10px;
+    border-radius: 100%;
+    width: 10px;
+}
+
+.online {
+    background-color: springgreen;
+}
+
+.rotate {
+    rotate: 180deg;
+    transition: all 0.5s ease-in-out;
+}
+
+.rotateNegativ {
+    rotate: -0deg;
+    transition: all 0.5s ease-in-out;
 }
 
 @media(max-width:1000px) {

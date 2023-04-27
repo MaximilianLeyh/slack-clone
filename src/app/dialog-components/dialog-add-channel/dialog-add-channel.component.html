@@ -5,10 +5,11 @@
   
         <mat-icon mat-dialog-close>close</mat-icon>
       </div>
-      <span class="description-text"
-        >Channels are used for your team to communicate. Ideally, they should be
-        topic-related - #marketing, for example.</span
-      >
+      <span class="description-text">
+        Channels are used for your team to communicate. <br>
+        Ideally, they should be topic-related - #marketing, <br>
+        for example.
+        </span>
     </div>
     <div class="form-container" mat-dialog-content>
       <div>
@@ -41,8 +42,7 @@
         [disabled]="!post.conversationId"
         (click)="createConversation('channel')"
         mat-button
-        cdkFocusInitial
-      >
+        cdkFocusInitial>
         Create
       </button>
     </div>

@@ -1,6 +1,6 @@
-.dialog-container{
-    max-width: 400px;
-    height: 400px;
+.dialog-container {
+    width: 400px;
+    height: 500px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -15,22 +15,31 @@
             justify-content: space-between;
             align-items: flex-start;
 
-            h1{
+            h1 {
                 font-size: 30px;
+                padding-left: 40px;
             }
 
             mat-icon {
                 cursor: pointer;
+                padding-right: 10px;
+                padding-top: 10px;
             }
         }
     }
 
-
+    .description-text {
+        pointer-events: none;
+        display: flex;
+        justify-content: center;
+        text-align: center;
+    }
 
     .btn-container {
         justify-content: end;
+        padding-bottom: 10px;
 
-        button{
+        button {
             background-color: gray;
             color: #B7B8B9;
             border-radius: 5px;
@@ -39,9 +48,9 @@
                 filter: brightness(0.6);
             }
         }
-    } 
+    }
 
-    mat-form-field{
+    mat-form-field {
         display: flex;
         flex-direction: column;
     }
