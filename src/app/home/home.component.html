@@ -1,21 +1,21 @@
 <mat-drawer-container class="mat-drawer-container" autosize>
-    <mat-drawer #drawer class="sidenav" [opened]="true" mode="side">
+    <mat-drawer #drawer class="sidenav" [opened]="this.toggler.open" [mode]="this.toggler.type">
         <div class="logo-container">
             Slack-clone
         </div>
         <ul class="menu-items">
 
             <mat-selection-list hideSingleSelectionIndicator [multiple]="false">
-                <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel class="channelPannel" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                     <mat-expansion-panel-header class="specific-class">
                         <mat-panel-title>
                             Channels
                         </mat-panel-title>
                     </mat-expansion-panel-header>
 
-                    <mat-list-option *ngFor="let channel of channels" class="listItem">
+                    <mat-list-option (click)="changeActiveConversationId(channel, 'channel')" *ngFor="let channel of channels" class="listItem">
                         <span class="listItem"
-                            (click)="changeActiveConversationId(channel, 'channel')">{{channel}}</span>
+                            ># {{channel}}</span>
                     </mat-list-option>
                     <div class="add-channel">
                         <button (click)="openAddChannel()" mat-icon-button>
@@ -31,8 +31,8 @@
                              Chats
                         </mat-panel-title>
                     </mat-expansion-panel-header>
-                    <mat-list-option *ngFor="let chat of chats" class=" listItem">
-                        <span class="listItem" (click)="changeActiveConversationId(chat, 'chat')">{{chat}}</span>
+                    <mat-list-option (click)="changeActiveConversationId(chat, 'chat')" *ngFor="let chat of chats" class=" listItem">
+                        <span class="listItem" >{{chat}}</span>
                     </mat-list-option>
                     <div class="add-chat">
                          <button mat-icon-button (click)="openAddConversation('chat')">
@@ -49,14 +49,16 @@
         <mat-toolbar>
             <mat-toolbar-row>
                 <div class="searchbar-Container">
-                    <button (click)="drawer.toggle()" class="" mat-mini-fab matTooltip="open Workspace" color="basic">
+                    <button (click)="closeSidenav()" (click)="this.toggler.toggleNav()" class="buttonSidenav" [ngClass]="{'rotate': displayNotiffication , 'rotateNegativ': !displayNotiffication}" mat-mini-fab matTooltip="open/collapse Workspace" color="basic">
                         <mat-icon>keyboard_double_arrow_right</mat-icon>
                     </button>
-                    <mat-icon matPrefix>search</mat-icon>
                     <input class="searchbar" matInput placeholder="Search messages">
                     <img src="./assets/img/slack-big.svg" (click)="openSettings()"
                         matTooltip="{{ currentUser.userName }}" *ngIf="userService.currentUser$ | async as currentUser"
                         alt="">
+                        <div class="dotNavOnline" [ngClass]="{'online': loggedIn}">
+
+                        </div>
                 </div>
             </mat-toolbar-row>
         </mat-toolbar>

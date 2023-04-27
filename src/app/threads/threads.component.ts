@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges, HostListener } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Post } from 'src/models/post.class';
 import { HomeComponent } from '../home/home.component';
@@ -120,3 +120,13 @@ export class ThreadsComponent implements OnInit {
 
 
 }
+  // @HostListener('window:resize', ['$event'])
+  // onResize(event) {
+  //   if (window.innerWidth < 600) {
+  //     this.showThreads = false;
+  //   } else {
+  //     this.showThreads = true;
+  //   }
+  // }
+
+//}

@@ -5,4 +5,26 @@ body {
     margin: 0; 
     font-family: Roboto, "Helvetica Neue", sans-serif;
     overflow: hidden; 
+
+    //Scollbar Styling /* width */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #898989;
+    -webkit-border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #cacacc;
+
+}
 }

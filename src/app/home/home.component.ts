@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -8,6 +8,8 @@ import { UserSettingsComponent } from '../user-settings/user-settings.component'
 import { DialogAddConversationComponent } from '../dialog-components/dialog-add-conversation/dialog-add-conversation.component';
 import { DialogAddChannelComponent } from '../dialog-components/dialog-add-channel/dialog-add-channel.component';
 import { Subject } from 'rxjs/internal/Subject';
+import { set } from '@angular/fire/database';
+import { DrawerTogglerService } from '../services/drawer-toggler.service';
 
 @Component({
   selector: 'app-home',
@@ -28,13 +30,17 @@ export class HomeComponent implements OnInit {
   threadId: String;
   threads: Post[] = [];
   threadIdObs:boolean = false;
+  activeConversationTyp: string;
+  displayNotiffication: boolean = false;
+  loggedIn: boolean = true;
   
 
   constructor(
     public authService: AuthService,
     private firestore: AngularFirestore,
     public dialog: MatDialog,
-    public userService: UserService,) { }
+    public userService: UserService,
+    public toggler: DrawerTogglerService,  ) { }
 
   ngOnInit() {
     this.userService.getData();
@@ -124,8 +130,23 @@ export class HomeComponent implements OnInit {
     this.dialog.open(DialogAddChannelComponent);
   }
 
-  openWorkspace() {
-    document.getElementById('sidenav').classList.remove('display:none');
+  closeSidenav() {
+   this.displayNotiffication = !this.displayNotiffication;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    if (window.innerWidth < 600) {
+      this.toggler.type = 'over';
+      this.toggler.open = false;
+      this.toggler.showToggleBtn = true;
+      this.displayNotiffication = true;
+    } else {
+      this.toggler.type = 'side';
+      this.toggler.open = true;
+      this.toggler.showToggleBtn = false;
+      this.displayNotiffication = false;
+    }
   }
 }
 
