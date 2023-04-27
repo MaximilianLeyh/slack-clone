@@ -1,8 +1,9 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Conversation } from 'src/models/conversation.class';
 import { Post } from 'src/models/post.class';
 import { HomeComponent } from '../home/home.component';
+import { Subject } from 'rxjs';
 
 
 @Component({
@@ -15,9 +16,16 @@ export class PostOverviewComponent implements OnInit {
   loading: boolean = false;
   message = '';
   post: Post;
-  @Input() activeUserId: string = '';
-  @Input() activeConversationId: string = '';
-  emptyInput: string = '';
+  @Input() activeUserId: String = '';
+  @Input() activeConversationId: String = '';
+  @Input() activeConversationType: String = '';
+  @Input() showThreads:boolean = true;
+  @Output() showThreadsChange = new EventEmitter<boolean>();
+  @Input() threadId: String ;
+  @Output() threadIdChange = new EventEmitter<String>();
+  @Input() threadIdObs:boolean;
+  @Output() threadIdObsChange = new EventEmitter<boolean>();
+  emptyInput: String = '';
   
 
   constructor(private firstore: AngularFirestore, public home: HomeComponent) {}
@@ -34,9 +42,11 @@ export class PostOverviewComponent implements OnInit {
     this.post.timeStamp = new Date().getTime();
     this.post.userId = this.activeUserId;
     this.post.conversationId = this.activeConversationId;
-    this.post.conversationType = 'chat';
+    this.post.conversationType = this.activeConversationType;
     this.post.subPost = true;
     this.post.message = this.message;
+    this.post.threadId = this.randomId();
+    this.post.threadAmount = 1;
     this.firstore
       .collection('conversations')
       .add(this.post.toJSON())
@@ -45,6 +55,16 @@ export class PostOverviewComponent implements OnInit {
         this. message = '';
       });
     
+  }
+
+  randomId(){
+    return Math.random().toString(36).replace('0.', 'thread_');
+  }
+
+  openThread(threadId:String) {
+    this.showThreadsChange.emit(true);
+    this.threadIdObsChange.emit(!this.threadIdObs);
+    this.threadIdChange.emit(threadId); 
   }
 
 

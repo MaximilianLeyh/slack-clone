@@ -7,6 +7,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { UserSettingsComponent } from '../user-settings/user-settings.component';
 import { DialogAddConversationComponent } from '../dialog-components/dialog-add-conversation/dialog-add-conversation.component';
 import { DialogAddChannelComponent } from '../dialog-components/dialog-add-channel/dialog-add-channel.component';
+import { Subject } from 'rxjs/internal/Subject';
 
 @Component({
   selector: 'app-home',
@@ -15,14 +16,18 @@ import { DialogAddChannelComponent } from '../dialog-components/dialog-add-chann
 })
 export class HomeComponent implements OnInit {
   panelOpenState = false;
-  activeUserId: string = 'testUserId';
-  activeConversationId: string = '';
+  activeUserId: String = 'testUserId';
+  activeConversationId: String = '';
   conversations: Post[] = [];
   chats: Post[] = [];
   currentUser: any= '';
   channels: Post[] = [];
   allPosts: any;
-  activeConversationTyp: string;
+  activeConversationType: String;
+  showThreads:boolean = false;
+  threadId: String;
+  threads: Post[] = [];
+  threadIdObs:boolean = false;
   
 
   constructor(
@@ -46,8 +51,11 @@ export class HomeComponent implements OnInit {
         this.allPosts = changes;
         this.conversations = changes.sort((a, b) => { return a.timeStamp >= b.timeStamp ? 1 : -1 })
         this.updateConversations();
+        this.threadIdObs = !this.threadIdObs;
       });
   };
+
+  
 
   //
   updateConversations() {
@@ -56,7 +64,7 @@ export class HomeComponent implements OnInit {
     let filterdConversations = [];
     for (let i = 0; i < this.conversations.length; i++) {
       const element = this.conversations[i];
-      if (element['conversationId'] == this.activeConversationId) {
+      if (element['conversationId'] == this.activeConversationId && element['conversationType'] == this.activeConversationType) {
         let _post = new Post();
         _post.activeUser = element.activeUser;
         _post.conversationId = element.conversationId;
@@ -66,11 +74,14 @@ export class HomeComponent implements OnInit {
         _post.subPost = element.subPost;
         _post.timeStamp = element.timeStamp;
         _post.userId = element.userId;
+        _post.threadId = element.threadId;
+        _post.threadAmount = element.threadAmount;
+        _post.customIdName = element.customIdName;
         filterdConversations.push(_post);
       }
     }
     this.conversations = filterdConversations.sort((a, b) => { return a.timeStamp >= b.timeStamp ? 1 : -1 })
-
+    
   }
 
   collectChats() {
@@ -92,13 +103,14 @@ export class HomeComponent implements OnInit {
     });
   }
 
+
   openSettings() {
     this.dialog.open(UserSettingsComponent);
   }
 
   changeActiveConversationId(conversation: any, type: string) {
     this.activeConversationId = conversation;
-    this.activeConversationTyp = type;
+    this.activeConversationType = type;
     this.ngOnInit()
   }
 

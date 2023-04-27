@@ -1,12 +1,17 @@
 export class Post {
-    userId: string;   //Id of the  user
-    isRead: string[];   //userId's of useres who read
-    conversationId: string; //name of channel or chat
-    conversationType: string; //channel or chat
+    userId: String;   //Id of the  user
+    isRead: String[];   //userId's of useres who read
+    conversationId: String; //name of channel or chat
+    conversationType: String; //channel or chat
     timeStamp: number;  //timestamp 
-    message: string;    //the postmessage
+    message: String;    //the postmessage
     activeUser: number; //userID-Index of active user
     subPost: boolean;   //true if active user is posting again
+    threadId: String;
+    threadAmount: number;
+    customIdName: string;
+
+    Weekdays = ['Sunnday','Monday','Thuesday','Wednesday','Thursday','Friday', 'Saturday']
 
     constructor(obj?: any) {
         this.userId = obj ? obj.userId : '';
@@ -17,6 +22,9 @@ export class Post {
         this.message = obj ? obj.message : '';
         this.activeUser = obj ? obj.activeUser : '';
         this.subPost = obj ? obj.subPost : '';
+        this.threadId = obj ? obj.threadId : '';
+        this.threadAmount = obj ? obj.threadAmount : '';
+        this.customIdName = obj ? obj.customIdName : '';
     }
 
     public toJSON() {
@@ -28,12 +36,21 @@ export class Post {
             timeStamp: this.timeStamp,
             message: this.message,
             activeUser: this.activeUser,
-            subPost: this.subPost
+            subPost: this.subPost,
+            threadId: this.threadId,
+            threadAmount: this.threadAmount,
+            customIdName: this.customIdName
         }
     }
 
     public getTime(){
-        let time:string = (this.timeStamp.toString().charAt(2));
+        let date  = new Date(this.timeStamp);
+        let time = this.Weekdays[date.getDay()] +" "+ date.getHours() +":"+ date.getMinutes() + " Uhr";
         return time
+    }
+
+    public getUserName(){
+        let userName = "tbd";
+        return userName;
     }
 }

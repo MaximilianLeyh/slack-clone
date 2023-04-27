@@ -62,9 +62,10 @@
         </mat-toolbar>
 
         <div class="router-container">
-            <app-post-overview class="full-width" [activeUserId]="activeUserId"
-                [activeConversationId]="activeConversationId"></app-post-overview>
-            <app-threads></app-threads>
+            <app-post-overview [activeUserId]="activeUserId" [activeConversationType]="activeConversationType" [(threadId)]="threadId"
+                [activeConversationId]="activeConversationId" [(showThreads)]="showThreads" [(threadIdObs)]="threadIdObs"></app-post-overview>
+            <app-threads  [activeUserId]="activeUserId" [activeConversationType]="activeConversationType"
+            [threadId]="threadId" [(showThreads)]="showThreads" [threadIdBool]="threadIdObs"></app-threads>
         </div>
     </div>
 
