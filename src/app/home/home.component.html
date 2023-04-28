@@ -18,10 +18,10 @@
                             ># {{channel}}</span>
                     </mat-list-option>
                     <div class="add-channel">
-                        <button (click)="openAddChannel()" mat-icon-button>
-                            <mat-icon>add</mat-icon>
-                        </button>
                         <span>Add channels</span>
+                        <button mat-mini-fab (click)="openAddChannel()">
+                            <mat-icon>add</mat-icon>
+                          </button>
                     </div>
 
                  </mat-expansion-panel>
@@ -35,10 +35,10 @@
                         <span class="listItem" >{{chat}}</span>
                     </mat-list-option>
                     <div class="add-chat">
-                         <button mat-icon-button (click)="openAddConversation('chat')">
-                            <mat-icon>add</mat-icon>
-                        </button>
                         <span>Add chat</span>
+                        <button mat-mini-fab (click)="openAddConversation('chat')">
+                            <mat-icon>add</mat-icon>
+                          </button>
                     </div>
                 </mat-expansion-panel>
             </mat-selection-list>
@@ -56,9 +56,6 @@
                     <img src="./assets/img/slack-big.svg" (click)="openSettings()"
                         matTooltip="{{ currentUser.userName }}" *ngIf="userService.currentUser$ | async as currentUser"
                         alt="">
-                        <div class="dotNavOnline" [ngClass]="{'online': loggedIn}">
-
-                        </div>
                 </div>
             </mat-toolbar-row>
         </mat-toolbar>

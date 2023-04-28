@@ -1,11 +1,15 @@
 .dialog-container {
-    width: 400px;
+    width: 350px;
     height: 500px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
     background-color: white;
     border-radius: 10px;
+
+    .mat-mdc-dialog-content {
+        max-height: 300px;
+    }
 
     .top-container {
 
@@ -58,12 +62,34 @@
 
 @media (max-width:450px) {
     .dialog-container {
-        .top-container {
-            font-size: 20px;
+        width: 270px;
+        height: 500px;
+        font-size: 15px;
+        align-items: center;
+        justify-content: flex-start;
+
+        
+    .top-container {
+
+        .header {
+           justify-content: center;
+           align-items: center;
 
             h1 {
-                font-size: 25px;
+                font-size: 20px;
+                padding: 0px;
+                margin: 0px;
+                padding-right: 40px;
+                padding-bottom: 20px;
             }
-        }
+
+            mat-icon {
+                padding: 0px;
+            }
+
     }
 }
+    }
+
+}
+    
