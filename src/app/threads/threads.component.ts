@@ -117,16 +117,14 @@ export class ThreadsComponent implements OnInit {
 
 
   }
-
+  
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    if (window.innerWidth < 600) {
+      this.showThreads = false;
+    } else {
+      this.showThreads = true;
+    }
+  }
 
 }
-  // @HostListener('window:resize', ['$event'])
-  // onResize(event) {
-  //   if (window.innerWidth < 600) {
-  //     this.showThreads = false;
-  //   } else {
-  //     this.showThreads = true;
-  //   }
-  // }
-
-//}

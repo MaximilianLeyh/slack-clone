@@ -59,6 +59,16 @@ export class HomeComponent implements OnInit {
         this.updateConversations();
         this.threadIdObs = !this.threadIdObs;
       });
+
+      try {
+        this.activeUserId = this.userService.currentUser.userName;
+      } catch (error) {
+        
+      }
+      
+      //console.log(this.userService.currentUser.userName);
+      
+
   };
 
   
