@@ -1,15 +1,15 @@
 export class Post {
-    userId: String;   //Id of the  user
-    isRead: String[];   //userId's of useres who read
-    conversationId: String; //name of channel or chat
-    conversationType: String; //channel or chat
+    userId: string;   //Id of the  user
+    isRead: string[];   //userId's of useres who read
+    conversationId: string; //name of channel or chat
+    conversationType: string; //channel or chat
     timeStamp: number;  //timestamp 
-    message: String;    //the postmessage
+    message: string;    //the postmessage
     activeUser: number; //userID-Index of active user
-    subPost: boolean;   //true if active user is posting again
-    threadId: String;
+    subPost: boolean;   //true if not main thread
+    threadId: string;   //if chat it's the ohter user 
     threadAmount: number;
-    customIdName: string;
+    customIdName: string; //document number in firebase
 
     Weekdays = ['Sunnday','Monday','Thuesday','Wednesday','Thursday','Friday', 'Saturday']
 

@@ -19,12 +19,12 @@ export class ThreadsComponent implements OnInit {
   allPosts: any;
   headerTitle: string = '# filledFromDB';
   loading: boolean = false;
-  message: String = '';
+  message: string = '';
   post: Post;
-  @Input() activeUserId: String = '';
-  activeConversationId: String = '';
-  @Input() activeConversationType: String = '';
-  @Input() threadId: String = '';
+  @Input() activeUserId: string = '';
+  activeConversationId: string = '';
+  @Input() activeConversationType: string = '';
+  @Input() threadId: string = '';
   postId: string;
 
 

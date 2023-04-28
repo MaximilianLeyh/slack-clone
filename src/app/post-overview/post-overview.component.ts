@@ -16,16 +16,16 @@ export class PostOverviewComponent implements OnInit {
   loading: boolean = false;
   message = '';
   post: Post;
-  @Input() activeUserId: String = '';
-  @Input() activeConversationId: String = '';
-  @Input() activeConversationType: String = '';
+  @Input() activeUserId: string = '';
+  @Input() activeConversationId: string = '';
+  @Input() activeConversationType: string = '';
   @Input() showThreads:boolean = true;
   @Output() showThreadsChange = new EventEmitter<boolean>();
-  @Input() threadId: String ;
-  @Output() threadIdChange = new EventEmitter<String>();
+  @Input() threadId: string ;
+  @Output() threadIdChange = new EventEmitter<string>();
   @Input() threadIdObs:boolean;
   @Output() threadIdObsChange = new EventEmitter<boolean>();
-  emptyInput: String = '';
+  emptyInput: string = '';
   
 
   constructor(private firstore: AngularFirestore, public home: HomeComponent) {}
@@ -61,7 +61,7 @@ export class PostOverviewComponent implements OnInit {
     return Math.random().toString(36).replace('0.', 'thread_');
   }
 
-  openThread(threadId:String) {
+  openThread(threadId:string) {
     this.showThreadsChange.emit(true);
     this.threadIdObsChange.emit(!this.threadIdObs);
     this.threadIdChange.emit(threadId); 

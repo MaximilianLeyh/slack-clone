@@ -3,7 +3,7 @@
   <div style="padding-top: 12px;">
     <mat-form-field appearance="outline" class="mr16">
       <mat-label>Conversation Name</mat-label>
-      <input [(ngModel)]="post.conversationId" matInput placeholder="Conversation Name">
+      <input [(ngModel)]="post.threadId" matInput placeholder="Conversation Name">
     </mat-form-field>
   </div>
   <div>
@@ -15,6 +15,6 @@
 </mat-dialog-content>
 <mat-dialog-actions align="center">
   <button mat-button [disabled]="loading" mat-dialog-close>Cancel</button>
-  <button mat-button [disabled]="loading" [mat-dialog-close]="true" (click)="createConversation(conversationType)" cdkFocusInitial>Save</button>
+  <button mat-button [disabled]="loading" [mat-dialog-close]="true" (click)="createConversation()"cdkFocusInitial>Save</button>
 </mat-dialog-actions>
 

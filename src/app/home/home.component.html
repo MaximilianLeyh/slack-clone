@@ -32,11 +32,11 @@
                         </mat-panel-title>
                     </mat-expansion-panel-header>
                     <mat-list-option (click)="changeActiveConversationId(chat, 'chat')" *ngFor="let chat of chats" class=" listItem">
-                        <span class="listItem" >{{chat}}</span>
+                        <span class="listItem" >{{removeUser(chat)}}</span>
                     </mat-list-option>
                     <div class="add-chat">
                         <span>Add chat</span>
-                        <button mat-mini-fab (click)="openAddConversation('chat')">
+                        <button mat-mini-fab (click)="openAddConversation()">
                             <mat-icon>add</mat-icon>
                           </button>
                     </div>

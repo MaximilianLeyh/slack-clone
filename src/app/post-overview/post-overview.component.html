@@ -1,13 +1,13 @@
 <div class="postsOverview">
     <div class="postContentHeader">
-        <span>{{ activeConversationId }}</span>
+        <span>{{ home.removeUser(activeConversationId) }}</span>
     </div>
     <div class="postContentContainer">
         <div *ngFor="let post of home.conversations">
             <div class="conversationInfo" *ngIf="!post.subPost">
                 <div class="header">
                     <div class="userPic" *ngIf="!(post.conversationType == 'channel')">pic</div>
-                    <span>{{post.conversationId}}</span>
+                    <span>{{home.removeUser(post.conversationId)}}</span>
                 </div>
                 <div class="content">
                     {{post.message}}
@@ -30,7 +30,7 @@
     </div>
     <div class="messageBox">
         <mat-form-field appearance="outline">
-            <mat-label>Nachtricht an {{ activeConversationId }}</mat-label>
+            <mat-label>Nachtricht an {{ home.removeUser(activeConversationId) }}</mat-label>
             <textarea [(ngModel)]="message" [disabled]="loading" matInput></textarea>
             <button *ngIf="message" (click)="savePost()">
                 <mat-icon matSuffix>send</mat-icon>
