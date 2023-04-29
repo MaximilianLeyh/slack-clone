@@ -53,9 +53,13 @@
                         <mat-icon>keyboard_double_arrow_right</mat-icon>
                     </button>
                     <input class="searchbar" matInput placeholder="Search messages">
-                    <img src="./assets/img/slack-big.svg" (click)="openSettings()"
-                        matTooltip="{{ currentUser.userName }}" *ngIf="userService.currentUser$ | async as currentUser"
-                        alt="">
+                    <button mat-button [matMenuTriggerFor]="menu">
+                        <img *ngIf="userService.currentUser$ | async as currentUser" src="{{currentUser.profileImg}}">
+                    </button>
+                    <mat-menu #menu="matMenu">
+                      <button (click)="openEditProlfil()" mat-menu-item>Profil</button>
+                      <button (click)="openLogout()" mat-menu-item>Logout</button>
+                    </mat-menu>
                 </div>
             </mat-toolbar-row>
         </mat-toolbar>

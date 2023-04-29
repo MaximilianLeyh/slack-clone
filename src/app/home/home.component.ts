@@ -10,6 +10,7 @@ import { DialogAddChannelComponent } from '../dialog-components/dialog-add-chann
 import { Subject } from 'rxjs/internal/Subject';
 import { set } from '@angular/fire/database';
 import { DrawerTogglerService } from '../services/drawer-toggler.service';
+import { DialogEditProfilePictureComponent } from '../dialog-components/dialog-edit-profile-picture/dialog-edit-profile-picture.component';
 
 @Component({
   selector: 'app-home',
@@ -33,6 +34,7 @@ export class HomeComponent implements OnInit {
   activeConversationTyp: string;
   displayNotiffication: boolean = false;
   loggedIn: boolean = true;
+  profileImg: '';
   
 
   constructor(
@@ -120,8 +122,12 @@ export class HomeComponent implements OnInit {
   }
 
 
-  openSettings() {
+  openLogout() {
     this.dialog.open(UserSettingsComponent);
+  }
+
+  openEditProlfil() {
+    this.dialog.open(DialogEditProfilePictureComponent);
   }
 
   changeActiveConversationId(conversation: any, type: string) {
