@@ -127,6 +127,8 @@ export class HomeComponent implements OnInit {
     this.activeConversationId = conversation;
     this.activeConversationType = type;
     this.ngOnInit()
+    console.log(this.conversations);
+    
   }
 
   openAddConversation() {
