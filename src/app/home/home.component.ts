@@ -19,16 +19,16 @@ import { DialogEditProfilePictureComponent } from '../dialog-components/dialog-e
 })
 export class HomeComponent implements OnInit {
   panelOpenState = false;
-  activeUserId: String = 'testUserId';
-  activeConversationId: String = '';
+  activeUserId: string = '';
+  activeConversationId: string = '';
   conversations: Post[] = [];
-  chats: Post[] = [];
+  chats: string[] = [];
   currentUser: any= '';
-  channels: Post[] = [];
+  channels: string[] = [];
   allPosts: any;
-  activeConversationType: String;
+  activeConversationType: string;
   showThreads:boolean = false;
-  threadId: String;
+  threadId: string;
   threads: Post[] = [];
   threadIdObs:boolean = false;
   activeConversationTyp: string;
@@ -46,12 +46,12 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getData();
-
-    // await this.firestore.collection('conversations').valueChanges().forEach(conv => {
-    //   this.updateconversations(conv);
-    //   this.updateChats();
-    //   console.log('die chats', this.chats);
-    // })
+    try {
+      this.activeUserId = this.userService.currentUser.userName;
+    } catch (error) {
+      
+    }
+    
     this.firestore
       .collection('conversations')
       .valueChanges({ idField: 'customIdName' })
@@ -62,18 +62,17 @@ export class HomeComponent implements OnInit {
         this.threadIdObs = !this.threadIdObs;
       });
 
-      try {
-        this.activeUserId = this.userService.currentUser.userName;
-      } catch (error) {
-        
-      }
+      
       
       //console.log(this.userService.currentUser.userName);
       
 
   };
 
-  
+  removeUser(name: string){
+    let one = name.replace(this.activeUserId,'');
+    return one.replace('|','')
+  }
 
   //
   updateConversations() {
@@ -134,11 +133,13 @@ export class HomeComponent implements OnInit {
     this.activeConversationId = conversation;
     this.activeConversationType = type;
     this.ngOnInit()
+    console.log(this.conversations);
+    
   }
 
-  openAddConversation(conversationType: string) {
+  openAddConversation() {
     const dialogConfig = new MatDialogConfig();
-    dialogConfig.data = { convType: conversationType }
+    dialogConfig.data = { userName: this.activeUserId }
     this.dialog.open(DialogAddConversationComponent, dialogConfig);
   }
 

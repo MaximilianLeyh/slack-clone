@@ -12,25 +12,26 @@ export class DialogAddConversationComponent {
 
   loading = false;
   post = new Post();
-  activeUserId = 'addComponente';
-  conversationType = '';
+  receiverName: string = '';
+  userName: string = '';
 
 
   constructor(private firestore: AngularFirestore, @Inject(MAT_DIALOG_DATA) public data)  {
-  this.conversationType = data.convType;
+  this.userName = data.userName;
 }
 
-createConversation(conversationType: string) {
-  this.loading = true;
+createConversation() {
   let post = new Post();
+  this.loading = true;
   post.timeStamp = new Date().getTime();
-  post.userId = this.activeUserId;
-  post.conversationId = this.post.conversationId;
-  post.conversationType = conversationType;
+  post.conversationId = this.userName + "|" + this.post.threadId;
+  post.conversationType = 'chat';
   post.subPost = false;
+  post.threadId = this.post.threadId;
   post.message = this.post.message;
+  post.userId = this.userName
   this.firestore
-    .collection('conversations')
+    .collection('conversations')    
     .add(post.toJSON())
     .then((result: any) => {
       this.loading = false;
