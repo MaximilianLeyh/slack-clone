@@ -65,7 +65,7 @@
         </mat-toolbar>
 
         <div class="router-container">
-            <app-post-overview [activeUserId]="activeUserId" [activeConversationType]="activeConversationType" [(threadId)]="threadId"
+            <app-post-overview class="full-width" [activeUserId]="activeUserId" [activeConversationType]="activeConversationType" [(threadId)]="threadId"
                 [activeConversationId]="activeConversationId" [(showThreads)]="showThreads" [(threadIdObs)]="threadIdObs"></app-post-overview>
             <app-threads  [activeUserId]="activeUserId" [activeConversationType]="activeConversationType"
             [threadId]="threadId" [(showThreads)]="showThreads" [threadIdBool]="threadIdObs"></app-threads>
