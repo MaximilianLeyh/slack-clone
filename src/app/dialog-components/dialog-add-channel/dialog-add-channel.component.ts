@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Firestore, getFirestore, collection, doc, setDoc, addDoc } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import { Channel } from 'src/models/channels.class';
 import { timestamp } from 'rxjs';
 import { Post } from 'src/models/post.class';
+import { PostService } from 'src/app/services/post.service';
 
 @Component({
   selector: 'app-dialog-add-channel',
@@ -18,7 +17,7 @@ export class DialogAddChannelComponent implements OnInit {
   conversationType = '';
 
   constructor(
-    private firestore: AngularFirestore,
+    private postService: PostService,
     private router: Router
   ) { }
 
@@ -33,14 +32,10 @@ export class DialogAddChannelComponent implements OnInit {
     post.conversationId = this.post.conversationId;
     post.conversationType = conversationType;
     post.subPost = false;
+    post.subThread = false;
     post.message = this.post.message;
-    // this.firestore
-    //   .collection('conversations')
-    //   .add(post.toJSON())
-    //   .then((result: any) => {
-    //     this.loading = false;
-    //     //this. message = '';
-    //   });
+    this.postService.create(post);
+    
   
   }
 }

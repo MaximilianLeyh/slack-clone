@@ -4,6 +4,7 @@ import { doc, updateDoc } from '@angular/fire/firestore';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { PostService } from 'src/app/services/post.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -18,27 +19,27 @@ export class DialogEditProfilePictureComponent {
   public images: any = [
     {
       name: 'Pinguin',
-      img: '../../assets/img/profil/pingu.png',
+      img: 'pingu.png',
     },
     {
       name: 'Standard',
-      img: '../../assets/img/profil/blank-profile.png',
+      img: 'blank-profile.png',
     },
     {
       name: 'Female',
-      img: '../../assets/img/profil/female1.png',
+      img: 'female1.png',
     },
     {
       name: 'Male',
-      img: '../../assets/img/profil/male1.png',
+      img: 'male1.png',
     },
     {
       name: 'Sunglasses',
-      img: '../../assets/img/profil/sunglasses.png',
+      img: 'sunglasses.png',
     },
     {
       name: 'american-football',
-      img: '../../assets/img/profil/american-football.png',
+      img: 'american-football.png',
     },
   ];
 
@@ -46,10 +47,9 @@ export class DialogEditProfilePictureComponent {
     public dialog: MatDialog,
     public userService: UserService,
     public auth: AuthService,
-    private router: Router,
-    private firestore: AngularFirestore,) { }
+    private router: Router) { }
 
-  changeProfileImg() {
-    
+  changeProfileImg(img: string) {
+    this.userService.setImg(img);
   }
 }

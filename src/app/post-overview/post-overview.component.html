@@ -15,24 +15,29 @@
                 </div>
             </div>
             <div class="postContent" *ngIf="post.subPost">
+                <div>
+                    <hr>
+                    {{times.getDate(post.timeStamp)}}
+                </div>
                 <div class="postHeader">
                     <div class="userPic">pic</div>
-                     <span>{{ post.userId }} </span> <!--{{post.getTime()}} -->
+                    <span>{{ post.userId }} </span> {{times.getTime(post.timeStamp)}}
                     <div class="firstPost">
                         {{post.message}}
                     </div>
                 </div>
             </div>
             <div class="channelMenu" *ngIf="(post.conversationType == 'channel') && post.subPost">
-                <span (click)="openThread(post.threadId)">{{post.threadAmount}}Answers</span> 
+                <span (click)="openThread(post.threadId)">{{post.threadAmount}}Answers</span>
+                <button (click)="deletePost(post.customIdName)">delete</button>
             </div>
         </div>
-        
+
     </div>
     <div class="messageBox">
         <mat-form-field appearance="outline">
             <mat-label>Nachtricht an {{ home.removeUser(activeConversationId) }}</mat-label>
-            <textarea [(ngModel)]="post.message" [disabled]="loading" matInput></textarea>
+            <textarea [(ngModel)]="message" [disabled]="loading" matInput></textarea>
             <button *ngIf="message" (click)="savePost()">
                 <mat-icon matSuffix>send</mat-icon>
             </button>

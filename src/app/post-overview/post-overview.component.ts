@@ -1,11 +1,9 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Conversation } from 'src/models/conversation.class';
 import { Post } from 'src/models/post.class';
 import { HomeComponent } from '../home/home.component';
-import { Subject, map } from 'rxjs';
 import { PostService } from '../services/post.service';
-import { Timestamp } from '@angular/fire/firestore';
+import { Times } from 'src/models/time.class';
+import { map } from 'rxjs';
 
 
 @Component({
@@ -31,6 +29,7 @@ export class PostOverviewComponent implements OnInit, OnChanges {
   emptyInput: string = '';
   allPosts: any;
   conversations: Post[] = [];
+  times: Times = new Times;
 
 
   constructor(private postService: PostService, public home: HomeComponent) { }
@@ -65,7 +64,7 @@ export class PostOverviewComponent implements OnInit, OnChanges {
         )
       )
     ).subscribe(data => {
-      this.posts = data;
+      this.posts = data.sort((a, b) => { return a.timeStamp >= b.timeStamp ? 1 : -1 });
       this.updateConversations();
     });
         
@@ -88,7 +87,7 @@ export class PostOverviewComponent implements OnInit, OnChanges {
           _post.userId = element.userId;
           _post.threadId = element.threadId;
           _post.threadAmount = element.threadAmount;
-          _post.customIdName = element.customIdName;
+          _post.customIdName = element.id;
           filterdConversations.push(_post);
         }
       }
@@ -108,12 +107,20 @@ export class PostOverviewComponent implements OnInit, OnChanges {
     this.post.conversationType = this.activeConversationType;
     this.post.subPost = true;
     this.post.threadId = this.randomId();
-    this.post.threadAmount = 1;
+    this.post.threadAmount = 0;
     this.post.message = this.message;
     this.postService.create(this.post).then(() => {
       this.loading = false;
       this.message = '';
-      console.log('Created new item successfully!');
+      this.updateConversations();
+    });
+  }
+
+  deletePost(customIdName: string) {
+    console.log('postdelete',customIdName);
+    this.postService.delete(customIdName).then(() => {
+      this.updateConversations();
+      this.threadIdChange.emit('');
     });
   }
 
@@ -128,7 +135,7 @@ export class PostOverviewComponent implements OnInit, OnChanges {
 
   openThread(threadId: string) {
     this.showThreadsChange.emit(true);
-    this.threadIdObsChange.emit(!this.threadIdObs);
+    //this.threadIdObsChange.emit(!this.threadIdObs);
     this.threadIdChange.emit(threadId);
   }
 

@@ -3,6 +3,7 @@ import { docData, Firestore, getDocs, doc, getDoc } from '@angular/fire/firestor
 import { AuthService } from './auth.service';
 import { collection, onSnapshot } from '@firebase/firestore';
 import { Observable, of, switchMap } from 'rxjs';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 
 
 @Injectable({
@@ -13,12 +14,13 @@ export class UserService {
   currentUser: any;
   users: any = [];
   userRef: any = collection(this.firestore, 'users');
-  
-
+  userRef2: AngularFirestoreCollection = null;  //set Colletion with type Post
 
   constructor(
+    private db: AngularFirestore,
     public authService: AuthService,
     private firestore: Firestore) {
+    this.userRef2 = db.collection('users');
     onSnapshot(collection(this.firestore, 'users'), (snapshot) => {
       snapshot.docChanges().forEach((change) => {
         if (change.type === 'added') {
@@ -58,5 +60,9 @@ export class UserService {
 
   getData() {
     getDocs(this.userRef);
+  }
+
+  setImg(img: string) {
+    return this.userRef2.doc(this.currentUser.id).update({ 'profileImg': img });
   }
 }

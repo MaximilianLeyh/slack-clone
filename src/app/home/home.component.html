@@ -54,10 +54,10 @@
                     </button>
                     <input class="searchbar" matInput placeholder="Search messages">
                     <button mat-button [matMenuTriggerFor]="menu">
-                        <img *ngIf="userService.currentUser$ | async as currentUser" src="{{currentUser.profileImg}}">
+                        <img *ngIf="userService.currentUser$ | async as currentUser" src="../../assets/img/profil/{{currentUser.profileImg}}">
                     </button>
                     <mat-menu #menu="matMenu">
-                      <button (click)="openEditProlfil()" mat-menu-item>Profil</button>
+                      <button (click)="openEditProfil()" mat-menu-item>Profil</button>
                       <button (click)="openLogout()" mat-menu-item>Logout</button>
                     </mat-menu>
                 </div>

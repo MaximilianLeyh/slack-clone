@@ -1,8 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges, HostListener } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges, HostListener, OnChanges } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Post } from 'src/models/post.class';
 import { HomeComponent } from '../home/home.component';
 import { Subject } from 'rxjs/internal/Subject';
+import { map } from 'rxjs';
+import { PostService } from '../services/post.service';
+import { Times } from 'src/models/time.class';
 
 @Component({
   selector: 'app-threads',
@@ -10,12 +13,12 @@ import { Subject } from 'rxjs/internal/Subject';
   styleUrls: ['./threads.component.scss']
 })
 
-export class ThreadsComponent implements OnInit {
+export class ThreadsComponent implements OnInit, OnChanges {
   @Input() showThreads = false;
   @Input() threadIdBool: boolean;
   @Output() showThreadsChange = new EventEmitter<boolean>();
-  conversations: Post[] = [];
-  threads: Post[] = [];
+  conversations: any = [];
+  threads: any;
   allPosts: any;
   headerTitle: string = '# filledFromDB';
   loading: boolean = false;
@@ -26,25 +29,32 @@ export class ThreadsComponent implements OnInit {
   @Input() activeConversationType: string = '';
   @Input() threadId: string = '';
   postId: string;
+  mainThread: Post = new Post;
+  times: Times = new Times;
 
-
-  constructor(private firstore: AngularFirestore, public home: HomeComponent) { }
+  constructor(private postService: PostService, public home: HomeComponent) { }
 
   ngOnInit(): void {
-    this.firstore
-      .collection('conversations')
-      .valueChanges({ idField: 'customIdName' })
-      .subscribe((changes: any) => {
-        this.allPosts = changes;
-        this.conversations = changes.sort((a, b) => { return a.timeStamp >= b.timeStamp ? 1 : -1 })
-        this.updateThreads();
-        this.collectThreads();
-      });
+    this.retrievePosts();
+    this.collectThreads();
+  }
+
+  retrievePosts() {
+    this.postService.getAll().snapshotChanges().pipe(
+      map(changes =>
+        changes.map(c =>
+          ({ id: c.payload.doc.id, ...c.payload.doc.data() })
+        )
+      )
+    ).subscribe(data => {
+      this.conversations = data;
+      this.updateThreads();
+    });
+
   }
 
   ngOnChanges() {
     this.collectThreads();
-    this.setThreadAmount();
   }
 
 
@@ -68,7 +78,7 @@ export class ThreadsComponent implements OnInit {
         _post.userId = element.userId;
         _post.threadId = element.threadId;
         _post.threadAmount = element.threadAmount;
-        _post.customIdName = element.customIdName;
+        _post.customIdName = element.id;
         filterdConversations.push(_post);
       }
     }
@@ -82,6 +92,7 @@ export class ThreadsComponent implements OnInit {
         this.threads.push(conv);
         this.activeConversationId = conv.conversationId;
       }
+      this.mainThread = this.threads[0];
     });
   }
 
@@ -96,28 +107,31 @@ export class ThreadsComponent implements OnInit {
     this.post.subPost = true;
     this.post.message = this.message;
     this.post.threadId = this.threadId;
-    this.post.threadAmount = this.threads.length;
-    // this.firstore
-    //   .collection('conversations')
-    //   .add(this.post.toJSON())
-    //   .then((result: any) => {
-    //     this.loading = false;
-    //     this.message = '';
-    //   });
+    this.post.subThread = true;
+    this.postService.create(this.post)
+      .then(() => {
+        this.loading = false;
+        this.message = '';
+        this.setThreadAmount();
+      });
+  }
+
+  deleteThread(customIdName: string) {
+    this.postService.delete(customIdName).then(() => {
+      this.collectThreads();
+      this.updateThreads();
+      this.setThreadAmount();
+    });
   }
 
   setThreadAmount() {
-    this.threads.forEach(thread => {
-      thread.threadAmount = this.threads.length;
-      // this.firstore
-      //   .collection('conversations')
-      //   .doc(thread.customIdName)
-      //   .update(thread.toJSON());
-    });
-
-
+    console.log('setThreadAmount',this.mainThread.customIdName) ;
+    console.log('setThreadAmount',this.threads) ;
+    if (this.threads.length > 0) {
+      this.postService.update(this.mainThread.customIdName, { threadAmount: this.threads.length });
+    }
   }
-  
+
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     if (window.innerWidth < 600) {

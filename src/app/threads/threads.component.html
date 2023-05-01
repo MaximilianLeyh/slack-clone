@@ -10,11 +10,14 @@
             <div class="postContent" >
                 <div class="postHeader">
                     <div class="userPic">pic</div>
-                    <span>{{ post.userId }} </span> {{post.threadId}    
+                    <span>{{ post.userId }} </span> {{times.getTime(post.timeStamp)}}
                     <div class="firstPost">
                         {{post.message}}
                     </div>
                 </div>
+            </div>
+            <div>
+                <button (click)="deleteThread(post.customIdName)">delete</button>
             </div>
         </div>
         <div class="messageBox">

@@ -35,19 +35,21 @@ export class HomeComponent implements OnInit {
   displayNotiffication: boolean = false;
   loggedIn: boolean = true;
   profileImg: '';
-  
 
   constructor(
     public authService: AuthService,
     private firestore: AngularFirestore,
     public dialog: MatDialog,
     public userService: UserService,
-    public toggler: DrawerTogglerService,  ) { }
+    public toggler: DrawerTogglerService
+    ) { }
 
   ngOnInit() {
     this.userService.getData();
     try {
       this.activeUserId = this.userService.currentUser.userName;
+      if(this.activeUserId.length > 0) localStorage.setItem('loggedUser', this.activeUserId);
+      else this.activeUserId = localStorage.getItem('loggedUser');
     } catch (error) {
       
     }
@@ -70,6 +72,7 @@ export class HomeComponent implements OnInit {
 
   //
   updateConversations() {
+    this.activeUserId = localStorage.getItem('loggedUser');
     this.collectChats();
     this.collectChannels();
     let filterdConversations = [];
@@ -96,13 +99,16 @@ export class HomeComponent implements OnInit {
   }
 
   collectChats() {
-    this.chats = [];
+    if (this.activeUserId.length > 0) {
+      this.chats = [];
     this.allPosts.forEach(post => {
       if (post.conversationType == 'chat') {
         if (!this.chats.includes(post.conversationId)) this.chats.push(post.conversationId);
       }
 
     });
+    }
+    
   }
 
   collectChannels() {
@@ -119,7 +125,7 @@ export class HomeComponent implements OnInit {
     this.dialog.open(UserSettingsComponent);
   }
 
-  openEditProlfil() {
+  openEditProfil() {
     this.dialog.open(DialogEditProfilePictureComponent);
   }
 
