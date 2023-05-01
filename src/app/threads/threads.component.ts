@@ -125,8 +125,6 @@ export class ThreadsComponent implements OnInit, OnChanges {
   }
 
   setThreadAmount() {
-    console.log('setThreadAmount',this.mainThread.customIdName) ;
-    console.log('setThreadAmount',this.threads) ;
     if (this.threads.length > 0) {
       this.postService.update(this.mainThread.customIdName, { threadAmount: this.threads.length });
     }

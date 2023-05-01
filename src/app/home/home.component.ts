@@ -35,6 +35,7 @@ export class HomeComponent implements OnInit {
   displayNotiffication: boolean = false;
   loggedIn: boolean = true;
   profileImg: '';
+  avatars = [];
 
   constructor(
     public authService: AuthService,
@@ -63,12 +64,26 @@ export class HomeComponent implements OnInit {
         this.updateConversations();
         this.threadIdObs = !this.threadIdObs;
       });
+      
   };
 
   removeUser(name: string){
     let one = name.replace(this.activeUserId,'');
     return one.replace('|','')
   }
+
+ 
+  getUserAvatar(userId: string) {
+    let value = 'blank-profile.png';
+    // this.avatars.forEach(avatar => {
+    //   if(avatar.name === userId) value = avatar.img;
+    // });
+    this.userService.users.forEach(user => {
+      if(user.userName === userId) value = user.profileImg;
+    });
+    return value;
+  }
+
 
   //
   updateConversations() {
@@ -95,7 +110,6 @@ export class HomeComponent implements OnInit {
       }
     }
     this.conversations = filterdConversations.sort((a, b) => { return a.timeStamp >= b.timeStamp ? 1 : -1 })
-    
   }
 
   collectChats() {

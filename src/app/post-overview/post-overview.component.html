@@ -7,7 +7,7 @@
         <div *ngFor="let post of conversations">
             <div class="conversationInfo" *ngIf="!post.subPost">
                 <div class="header">
-                    <div class="userPic" *ngIf="!(post.conversationType == 'channel')">pic</div>
+                    <img class="userPic" [src]="'../../assets/img/profil/' + home.getUserAvatar(post.userId)" alt="">
                     <span>{{home.removeUser(post.conversationId)}}</span>
                 </div>
                 <div class="content">
@@ -20,10 +20,10 @@
                     {{times.getDate(post.timeStamp)}}
                 </div>
                 <div class="postHeader">
-                    <div class="userPic">pic</div>
+                    <img class="userPic" [src]="'../../assets/img/profil/' + home.getUserAvatar(post.userId)" alt="">
                     <span>{{ post.userId }} </span> {{times.getTime(post.timeStamp)}}
                     <div class="firstPost">
-                        {{post.message}}
+                         {{post.message}}
                     </div>
                 </div>
             </div>

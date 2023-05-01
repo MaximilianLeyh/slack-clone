@@ -9,7 +9,7 @@
         <div *ngFor="let post of threads">
             <div class="postContent" >
                 <div class="postHeader">
-                    <div class="userPic">pic</div>
+                    <img class="userPic" [src]="'../../assets/img/profil/' + home.getUserAvatar(post.userId)" alt="">
                     <span>{{ post.userId }} </span> {{times.getTime(post.timeStamp)}}
                     <div class="firstPost">
                         {{post.message}}
