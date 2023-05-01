@@ -97,13 +97,13 @@ export class ThreadsComponent implements OnInit {
     this.post.message = this.message;
     this.post.threadId = this.threadId;
     this.post.threadAmount = this.threads.length;
-    this.firstore
-      .collection('conversations')
-      .add(this.post.toJSON())
-      .then((result: any) => {
-        this.loading = false;
-        this.message = '';
-      });
+    // this.firstore
+    //   .collection('conversations')
+    //   .add(this.post.toJSON())
+    //   .then((result: any) => {
+    //     this.loading = false;
+    //     this.message = '';
+    //   });
   }
 
   setThreadAmount() {

@@ -34,13 +34,13 @@ export class DialogAddChannelComponent implements OnInit {
     post.conversationType = conversationType;
     post.subPost = false;
     post.message = this.post.message;
-    this.firestore
-      .collection('conversations')
-      .add(post.toJSON())
-      .then((result: any) => {
-        this.loading = false;
-        //this. message = '';
-      });
+    // this.firestore
+    //   .collection('conversations')
+    //   .add(post.toJSON())
+    //   .then((result: any) => {
+    //     this.loading = false;
+    //     //this. message = '';
+    //   });
   
   }
 }

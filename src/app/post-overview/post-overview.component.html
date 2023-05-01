@@ -1,9 +1,10 @@
 <div class="postsOverview">
     <div class="postContentHeader">
         <span>{{ home.removeUser(activeConversationId) }}</span>
+        <span>{{ activeConversationType }}</span>
     </div>
     <div class="postContentContainer">
-        <div *ngFor="let post of home.conversations">
+        <div *ngFor="let post of conversations">
             <div class="conversationInfo" *ngIf="!post.subPost">
                 <div class="header">
                     <div class="userPic" *ngIf="!(post.conversationType == 'channel')">pic</div>
@@ -16,7 +17,7 @@
             <div class="postContent" *ngIf="post.subPost">
                 <div class="postHeader">
                     <div class="userPic">pic</div>
-                    <span>{{ post.userId }} </span> {{post.getTime()}}
+                     <span>{{ post.userId }} </span> <!--{{post.getTime()}} -->
                     <div class="firstPost">
                         {{post.message}}
                     </div>
@@ -31,7 +32,7 @@
     <div class="messageBox">
         <mat-form-field appearance="outline">
             <mat-label>Nachtricht an {{ home.removeUser(activeConversationId) }}</mat-label>
-            <textarea [(ngModel)]="message" [disabled]="loading" matInput></textarea>
+            <textarea [(ngModel)]="post.message" [disabled]="loading" matInput></textarea>
             <button *ngIf="message" (click)="savePost()">
                 <mat-icon matSuffix>send</mat-icon>
             </button>

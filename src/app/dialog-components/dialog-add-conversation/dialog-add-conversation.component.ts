@@ -30,13 +30,13 @@ createConversation() {
   post.threadId = this.post.threadId;
   post.message = this.post.message;
   post.userId = this.userName
-  this.firestore
-    .collection('conversations')    
-    .add(post.toJSON())
-    .then((result: any) => {
-      this.loading = false;
-      //this. message = '';
-    });
+  // this.firestore
+  //   .collection('conversations')    
+  //   .add(post.toJSON())
+  //   .then((result: any) => {
+  //     this.loading = false;
+  //     //this. message = '';
+  //   });
 
 }
 

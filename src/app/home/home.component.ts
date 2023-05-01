@@ -59,12 +59,6 @@ export class HomeComponent implements OnInit {
         this.updateConversations();
         this.threadIdObs = !this.threadIdObs;
       });
-
-      
-      
-      //console.log(this.userService.currentUser.userName);
-      
-
   };
 
   removeUser(name: string){
@@ -126,9 +120,6 @@ export class HomeComponent implements OnInit {
   changeActiveConversationId(conversation: any, type: string) {
     this.activeConversationId = conversation;
     this.activeConversationType = type;
-    this.ngOnInit()
-    console.log(this.conversations);
-    
   }
 
   openAddConversation() {

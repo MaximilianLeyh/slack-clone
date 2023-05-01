@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core'
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore'
-import { Post } from 'src/models/post.class'
+import { Injectable } from '@angular/core';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { Post } from 'src/models/post.class';
 
 @Injectable({
     providedIn: 'root'
@@ -8,12 +8,12 @@ import { Post } from 'src/models/post.class'
 
 export class PostService {
 
-    private dbPath = 'collections'; //set Colletion name
+    private dbPath = 'conversations'; //set Colletion name
 
     postsRef: AngularFirestoreCollection<Post> = null;  //set Colletion with type Post
 
     constructor(private db: AngularFirestore) {
-        this.postsRef = db.collection(this.dbPath);
+        this.postsRef = db.collection(this.dbPath);        
     }
 
     getAll(): AngularFirestoreCollection<Post> {    //function that returns the complete db
@@ -21,7 +21,7 @@ export class PostService {
     }
 
     create(post: Post): any {   //function that creates an new entry in the db
-        return this.postsRef.add(post);
+        return this.postsRef.add({...post});
     }
 
     update(id: string, data: any): Promise<void> {  //function that updates an entry in the db
