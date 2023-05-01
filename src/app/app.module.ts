@@ -39,6 +39,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatListModule } from '@angular/material/list';
 import { DialogAddChannelComponent } from './dialog-components/dialog-add-channel/dialog-add-channel.component';
 import { DialogAddConversationComponent } from './dialog-components/dialog-add-conversation/dialog-add-conversation.component';
+import { DialogEditProfilePictureComponent } from './dialog-components/dialog-edit-profile-picture/dialog-edit-profile-picture.component';
 
 
 @NgModule({
@@ -54,7 +55,8 @@ import { DialogAddConversationComponent } from './dialog-components/dialog-add-c
       DialogSuccessMessageComponent,
       UserSettingsComponent,
       DialogAddChannelComponent,
-      DialogAddConversationComponent
+      DialogAddConversationComponent,
+      DialogEditProfilePictureComponent
     ],
 
   imports: [

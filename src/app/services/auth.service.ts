@@ -20,6 +20,7 @@ export class AuthService {
   errorMessage: string;
   errorCode: any;
   loggedIn: boolean = false;
+  profileImg: '';
   db: any = getFirestore();
   colRef: any = collection(this.db, 'users');
   loggedUser: Observable<any> = authState(this.auth);
@@ -65,6 +66,7 @@ export class AuthService {
           id: cred.user.uid,
           email: email,
           loggedIn: false,
+          profileImg: '../../assets/img/profil/blank-profile.png'
         });
         this.dialog.open(DialogSuccessMessageComponent);
         form.reset();
