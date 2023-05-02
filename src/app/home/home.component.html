@@ -52,7 +52,7 @@
                     <button (click)="closeSidenav()" (click)="this.toggler.toggleNav()" class="buttonSidenav" [ngClass]="{'rotate': displayNotiffication , 'rotateNegativ': !displayNotiffication}" mat-mini-fab matTooltip="open/collapse Workspace" color="basic">
                         <mat-icon>keyboard_double_arrow_right</mat-icon>
                     </button>
-                    <input class="searchbar" matInput placeholder="Search messages">
+                    <input class="searchbar" matInput placeholder="Search messages"  [(ngModel)]="searchString">
                     <button mat-button [matMenuTriggerFor]="menu">
                         <img *ngIf="userService.currentUser$ | async as currentUser" src="../../assets/img/profil/{{currentUser.profileImg}}">
                     </button>
@@ -66,7 +66,7 @@
 
         <div class="router-container">
             <app-post-overview class="full-width" [activeUserId]="activeUserId" [activeConversationType]="activeConversationType" [(threadId)]="threadId"
-                [activeConversationId]="activeConversationId" [(showThreads)]="showThreads" [(threadIdObs)]="threadIdObs"></app-post-overview>
+                [activeConversationId]="activeConversationId" [(showThreads)]="showThreads" [(threadIdObs)]="threadIdObs" [searchString]="searchString"></app-post-overview>
             <app-threads  [activeUserId]="activeUserId" [activeConversationType]="activeConversationType"
             [threadId]="threadId" [(showThreads)]="showThreads" [threadIdBool]="threadIdObs"></app-threads>
         </div>
