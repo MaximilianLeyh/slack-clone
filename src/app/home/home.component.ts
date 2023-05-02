@@ -35,6 +35,8 @@ export class HomeComponent implements OnInit {
   displayNotiffication: boolean = false;
   loggedIn: boolean = true;
   profileImg: '';
+  avatars = [];
+  searchString = '';
 
   constructor(
     public authService: AuthService,
@@ -60,8 +62,9 @@ export class HomeComponent implements OnInit {
       .subscribe((changes: any) => {
         this.allPosts = changes;
         this.conversations = changes.sort((a, b) => { return a.timeStamp >= b.timeStamp ? 1 : -1 })
-        this.updateConversations();
         this.threadIdObs = !this.threadIdObs;
+        this.collectChats();
+        this.collectChannels(); 
       });
   };
 
@@ -70,32 +73,12 @@ export class HomeComponent implements OnInit {
     return one.replace('|','')
   }
 
-  //
-  updateConversations() {
-    this.activeUserId = localStorage.getItem('loggedUser');
-    this.collectChats();
-    this.collectChannels();
-    let filterdConversations = [];
-    for (let i = 0; i < this.conversations.length; i++) {
-      const element = this.conversations[i];
-      if (element['conversationId'] == this.activeConversationId && element['conversationType'] == this.activeConversationType) {
-        let _post = new Post();
-        _post.activeUser = element.activeUser;
-        _post.conversationId = element.conversationId;
-        _post.conversationType = element.conversationType;
-        _post.isRead = element.isRead;
-        _post.message = element.message;
-        _post.subPost = element.subPost;
-        _post.timeStamp = element.timeStamp;
-        _post.userId = element.userId;
-        _post.threadId = element.threadId;
-        _post.threadAmount = element.threadAmount;
-        _post.customIdName = element.customIdName;
-        filterdConversations.push(_post);
-      }
-    }
-    this.conversations = filterdConversations.sort((a, b) => { return a.timeStamp >= b.timeStamp ? 1 : -1 })
-    
+  getUserAvatar(userId: string) {
+    let value = 'blank-profile.png';
+    this.userService.users.forEach(user => {
+      if(user.userName === userId) value = user.profileImg;
+    });
+    return value;
   }
 
   collectChats() {

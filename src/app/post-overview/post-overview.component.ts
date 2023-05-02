@@ -27,9 +27,10 @@ export class PostOverviewComponent implements OnInit, OnChanges {
   @Input() threadIdObs: boolean;
   @Output() threadIdObsChange = new EventEmitter<boolean>();
   emptyInput: string = '';
-  allPosts: any;
   conversations: Post[] = [];
   times: Times = new Times;
+  @Input() searchString = '';
+  memActiveConversationId = '';
 
 
   constructor(private postService: PostService, public home: HomeComponent) { }
@@ -52,7 +53,11 @@ export class PostOverviewComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    this.updateConversations();
+    if((this.searchString.length == 0)){
+      if(this.activeConversationId.includes('search'))this.activeConversationId = this.memActiveConversationId;
+      this.updateConversations();
+      }
+    else this.showFiltered();
     
   }
 
@@ -93,10 +98,7 @@ export class PostOverviewComponent implements OnInit, OnChanges {
       }
       this.conversations = filterdConversations.sort((a, b) => { return a.timeStamp >= b.timeStamp ? 1 : -1 })
     } catch (error) {
-      
     }
-    
-
   }
 
 
@@ -139,5 +141,22 @@ export class PostOverviewComponent implements OnInit, OnChanges {
     this.threadIdChange.emit(threadId);
   }
 
+  showFiltered(){
+    if(this.searchString.length > 0){
+      if(!(this.activeConversationId.includes('search')))this.memActiveConversationId = this.activeConversationId;
+      this.activeConversationId = 'search for...:' + this.searchString;
+      //this.activeConversationType = 'search';
+      let filterdConversations = [];
+      this.posts.forEach(post => {
+        const message:string = post.message.toString();
+        const name:string = post.userId.toString();
+        const searchString = this.searchString.toLocaleLowerCase();
+      if(message.toLowerCase().includes(searchString) || name.toLocaleLowerCase().includes(searchString)) filterdConversations.push(post);
+      this.conversations = filterdConversations.sort((a, b) => { return a.timeStamp >= b.timeStamp ? 1 : -1 })
+    });
+
+    }
+
+  }
 
 }
