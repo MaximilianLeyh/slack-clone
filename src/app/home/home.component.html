@@ -1,4 +1,4 @@
-<mat-drawer-container class="mat-drawer-container" autosize>
+<mat-drawer-container class="mat-drawer-container">
     <mat-drawer #drawer class="sidenav" [opened]="this.toggler.open" [mode]="this.toggler.type">
         <div class="logo-container">
             Slack-clone
@@ -65,9 +65,9 @@
         </mat-toolbar>
 
         <div class="router-container">
-            <app-post-overview [activeUserId]="activeUserId" [activeConversationType]="activeConversationType" [(threadId)]="threadId"
+            <app-post-overview style="width: 100%; height: 100%;" [activeUserId]="activeUserId" [activeConversationType]="activeConversationType" [(threadId)]="threadId"
                 [activeConversationId]="activeConversationId" [(showThreads)]="showThreads" [(threadIdObs)]="threadIdObs"></app-post-overview>
-            <app-threads  [activeUserId]="activeUserId" [activeConversationType]="activeConversationType"
+            <app-threads style="width: 100%; height: 100%;"   [activeUserId]="activeUserId" [activeConversationType]="activeConversationType"
             [threadId]="threadId" [(showThreads)]="showThreads" [threadIdBool]="threadIdObs"></app-threads>
         </div>
     </div>

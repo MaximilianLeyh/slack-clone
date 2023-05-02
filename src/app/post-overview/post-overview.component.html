@@ -1,36 +1,46 @@
 <div class="postsOverview">
     <div class="postContentHeader">
         <span>{{ home.removeUser(activeConversationId) }}</span>
-        <span>{{ activeConversationType }}</span>
     </div>
     <div class="postContentContainer">
         <div *ngFor="let post of conversations">
             <div class="conversationInfo" *ngIf="!post.subPost">
                 <div class="header">
                     <div class="userPic" *ngIf="!(post.conversationType == 'channel')">pic</div>
-                    <span>{{home.removeUser(post.conversationId)}}</span>
+                    <span># {{home.removeUser(post.conversationId)}}</span>
                 </div>
                 <div class="content">
                     {{post.message}}
                 </div>
             </div>
             <div class="postContent" *ngIf="post.subPost">
+                <img class="userPic" src="'../../assets/img/profil/pingu.png"> 
                 <div>
-                    <hr>
-                    {{times.getDate(post.timeStamp)}}
+                   
                 </div>
-                <div class="postHeader">
-                    <div class="userPic">pic</div>
-                    <span>{{ post.userId }} </span> {{times.getTime(post.timeStamp)}}
+                <div class="postHeader">            
+                    <span>{{ post.userId }}  {{times.getDate(post.timeStamp)}}  {{times.getTime(post.timeStamp)}}</span> 
                     <div class="firstPost">
                         {{post.message}}
                     </div>
+                    <span class="answers" (click)="openThread(post.threadId)">{{post.threadAmount}}Answers</span>
+                </div>
+                <div class="optionBox">
+                    <button>
+                        <mat-icon (click)="openThread(post.threadId)">comment</mat-icon>
+                    </button>
+                    <button>
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button>
+                        <mat-icon (click)="deletePost(post.customIdName)">delete</mat-icon>
+                    </button>
                 </div>
             </div>
-            <div class="channelMenu" *ngIf="(post.conversationType == 'channel') && post.subPost">
+            <!-- <div class="channelMenu" *ngIf="(post.conversationType == 'channel') && post.subPost">
                 <span (click)="openThread(post.threadId)">{{post.threadAmount}}Answers</span>
                 <button (click)="deletePost(post.customIdName)">delete</button>
-            </div>
+            </div> -->
         </div>
 
     </div>

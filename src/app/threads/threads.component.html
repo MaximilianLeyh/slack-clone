@@ -20,7 +20,9 @@
                 <button (click)="deleteThread(post.customIdName)">delete</button>
             </div>
         </div>
-        <div class="messageBox">
+       
+    </div>
+    <div class="messageBox">
         <mat-form-field appearance="outline">
             <mat-label>Nachtricht an {{ activeConversationId }}</mat-label>
             <textarea [(ngModel)]="message" [disabled]="loading" matInput></textarea>
@@ -29,8 +31,6 @@
             </button>
         </mat-form-field>
     </div>
-    </div>
-    
 </div>
 
 
