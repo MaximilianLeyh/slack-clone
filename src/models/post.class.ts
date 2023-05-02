@@ -3,7 +3,7 @@ export class Post {
     isRead?: string[];   //userId's of useres who read
     conversationId?: string; //name of channel or chat
     conversationType?: string; //channel or chat
-    timeStamp: number;  //timestamp 
+    timeStamp?: number;  //timestamp 
     message?: string;    //the postmessage
     activeUser?: number; //userID-Index of active user
     subPost?: boolean;   //true if not main thread

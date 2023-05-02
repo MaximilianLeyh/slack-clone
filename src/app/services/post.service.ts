@@ -31,5 +31,9 @@ export class PostService {
     delete(id: string): Promise<void> { //function that deletes an entry in the db
         return this.postsRef.doc(id).delete();
     }
+
+    getPost(customId: string): any {
+        return this.postsRef.doc(customId);
+    }
 }
 

@@ -40,6 +40,7 @@ import { MatListModule } from '@angular/material/list';
 import { DialogAddChannelComponent } from './dialog-components/dialog-add-channel/dialog-add-channel.component';
 import { DialogAddConversationComponent } from './dialog-components/dialog-add-conversation/dialog-add-conversation.component';
 import { DialogEditProfilePictureComponent } from './dialog-components/dialog-edit-profile-picture/dialog-edit-profile-picture.component';
+import { DialogEditPostComponent } from './dialog-components/dialog-edit-post/dialog-edit-post.component';
 
 
 @NgModule({
@@ -56,7 +57,8 @@ import { DialogEditProfilePictureComponent } from './dialog-components/dialog-ed
       UserSettingsComponent,
       DialogAddChannelComponent,
       DialogAddConversationComponent,
-      DialogEditProfilePictureComponent
+      DialogEditProfilePictureComponent,
+      DialogEditPostComponent
     ],
 
   imports: [

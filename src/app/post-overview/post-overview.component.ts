@@ -4,6 +4,8 @@ import { HomeComponent } from '../home/home.component';
 import { PostService } from '../services/post.service';
 import { Times } from 'src/models/time.class';
 import { map } from 'rxjs';
+import { DialogEditPostComponent } from '../dialog-components/dialog-edit-post/dialog-edit-post.component';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 
 
 @Component({
@@ -33,7 +35,7 @@ export class PostOverviewComponent implements OnInit, OnChanges {
   memActiveConversationId = '';
 
 
-  constructor(private postService: PostService, public home: HomeComponent) { }
+  constructor(private postService: PostService, public home: HomeComponent, public dialog: MatDialog,) { }
 
 
 
@@ -119,11 +121,16 @@ export class PostOverviewComponent implements OnInit, OnChanges {
   }
 
   deletePost(customIdName: string) {
-    console.log('postdelete',customIdName);
     this.postService.delete(customIdName).then(() => {
       this.updateConversations();
       this.threadIdChange.emit('');
     });
+  }
+
+  editPost(post: Post){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = { post: post, userName: this.activeUserId }
+    this.dialog.open(DialogEditPostComponent, dialogConfig);
   }
 
   newPost() {
