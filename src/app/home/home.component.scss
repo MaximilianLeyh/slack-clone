@@ -180,6 +180,8 @@ mat-list-option {
 
     span {
         padding-left: 40px;
+        padding-top: 20px;
+        padding-bottom: 20px;
     }
 }
 
@@ -199,6 +201,8 @@ mat-list-option {
     span {
         padding-left: 40px;
         padding-right: 20px;
+        padding-top: 20px;
+        padding-bottom: 20px;
     }
 }
 
@@ -251,7 +255,7 @@ mat-list-option {
     .searchbar {
         margin-right: 20px;
     }
-
+    
     .searchbar-Container {
         input {
             width: 150px;

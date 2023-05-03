@@ -7,12 +7,12 @@ body {
     background-color: white;
     border-left: 1px solid lightgrey; 
     width: 300px;
+    background-color: #F8F8F8;
 }
 
 .header {
     display: flex;
     flex-direction: column;
-    position: relative;
     padding-top: 12px;
     margin-left: 56px;
     min-height: 80px;
@@ -35,27 +35,37 @@ body {
     align-items: center;
     height: 32px;
     border-bottom: 1px solid lightgrey;
-    padding: 6px;
+    padding: 10px;
+    padding-left: 20px;
     border-right: 1px solid lightgrey;
 
     Button{
-        background-color: white;
+        background-color: #F8F8F8;
         border: none;
         cursor: pointer;
+
+        &:hover {
+            background-color: #ffffff;
+        } 
     }
 }
 
-
+.postHeader {
+    padding-left: 10px;
+        }
 
 .postContent {
-    position: relative;
-    padding-top: 12px;
-    margin-left: 56px;
+    display: flex;
+    padding-top: 10px;
+    padding-left: 20px;
     min-height: 80px;
+    border-bottom: 2px solid lightgrey;
 
-    .postHeader {
-        &:hover {
-            background-color: rgba(12, 12, 12, 0.15);
+    &:hover {
+        background-color: rgba(12, 12, 12, 0.15);
+
+        .optionBox {
+            opacity: 1;
         }
     }
 
@@ -74,13 +84,25 @@ body {
 }
 
 .userPic {
-    position: absolute;
-    top: 12px;
-    left: -48px;
+    display: flex;
     height: 42px;
     width: 42px;
-    background-color: blueviolet;
     border-radius: 8px;
+}
+
+.optionBox {
+    display: flex;
+    flex-direction: column;
+   padding-left: 10px;
+    opacity: 0;
+
+
+    button {
+    &:hover {
+        background-color: aqua;
+        cursor: pointer;
+    }
+}
 }
 
 .messageBox {
@@ -93,4 +115,10 @@ body {
     margin-left: auto;
     margin-right: auto;
 
+}
+
+@media(max-width:800px) {
+    .threads {
+        width: 250px;
+    }
 }

@@ -54,7 +54,7 @@
                     </button>
                     <input class="searchbar" matInput placeholder="Search messages"  [(ngModel)]="searchString">
                     <button mat-button [matMenuTriggerFor]="menu">
-                        <img *ngIf="userService.currentUser$ | async as currentUser" src="../../assets/img/profil/{{currentUser.profileImg}}">
+                        <img *ngIf="userService.currentUser$ | async as currentUser" src="../../assets/img/profil/{{currentUser.profileImg}}" matTooltip="{{ currentUser.userName }}">
                     </button>
                     <mat-menu #menu="matMenu">
                       <button (click)="openEditProfil()" mat-menu-item>Profil</button>
@@ -65,7 +65,7 @@
         </mat-toolbar>
 
         <div class="router-container">
-            <app-post-overview class="full-width" style="width: 100%; height: 100%;" [activeUserId]="activeUserId" [activeConversationType]="activeConversationType" [(threadId)]="threadId"
+            <app-post-overview class="full-width" style="height: 100%;" [activeUserId]="activeUserId" [activeConversationType]="activeConversationType" [(threadId)]="threadId"
                 [activeConversationId]="activeConversationId" [(showThreads)]="showThreads" [(threadIdObs)]="threadIdObs"  [searchString]="searchString"></app-post-overview>
             <app-threads style="height: 100%;"   [activeUserId]="activeUserId" [activeConversationType]="activeConversationType"
             [threadId]="threadId" [(showThreads)]="showThreads" [threadIdBool]="threadIdObs"></app-threads>

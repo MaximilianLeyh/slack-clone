@@ -38,7 +38,8 @@
     align-items: center;
     height: 32px;
     border-bottom: 1px solid lightgrey;
-    padding: 6px;
+    padding: 10px;
+    padding-left: 20px;
 }
 
 .postContent{
@@ -107,5 +108,11 @@
         background-color: white;
         border: none;
         cursor: pointer;
+    }
+}
+
+@media(max-width:800px) {
+    .postsOverview {
+        width: auto;
     }
 }

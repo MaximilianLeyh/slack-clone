@@ -1,6 +1,6 @@
 <div class="contentContainer">
     <div class="imageContainer">
-        <mat-selection-list  [multiple]="false">
+        <mat-selection-list hideSingleSelectionIndicator  [multiple]="false">
             <mat-list-option #image  (click)="changeProfileImg(image.img)" *ngFor="let image of images">
               <img class="listItem" [src]="'../../assets/img/profil/'+image.img" >
               <span>{{image.name}}</span>

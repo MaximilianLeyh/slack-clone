@@ -1,6 +1,6 @@
 <div class="threads" *ngIf="showThreads">
     <div class="postContentHeader">
-        <span>#thread {{ activeConversationId }}</span>
+        <span># thread {{ activeConversationId }}</span>
         <button (click)="closeThreads()">
             <mat-icon matSuffix>close</mat-icon>
         </button>
@@ -8,16 +8,21 @@
     <div class="postContentContainer">
         <div *ngFor="let post of threads">
             <div class="postContent" >
+                <img class="userPic" src="'../../assets/img/profil/pingu.png">
                 <div class="postHeader">
-                    <div class="userPic">pic</div>
                     <span>{{ post.userId }} </span> {{times.getTime(post.timeStamp)}}
                     <div class="firstPost">
                         {{post.message}}
                     </div>
                 </div>
-            </div>
-            <div>
-                <button (click)="deleteThread(post.customIdName)">delete</button>
+                <div class="optionBox">
+                    <button>
+                        <mat-icon (click)="updateThreads()">edit</mat-icon>
+                    </button>
+                    <button>
+                        <!-- <mat-icon (click)="deleteThread(customIdName: string)">delete</mat-icon> -->
+                    </button>
+                </div>
             </div>
         </div>
        
