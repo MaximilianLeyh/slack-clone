@@ -41,17 +41,7 @@ export class PostOverviewComponent implements OnInit, OnChanges {
 
   ngOnInit(): void {
     this.retrievePosts();
-    // this.firstore
-    //   .collection('conversations')
-    //   .valueChanges({ idField: 'customIdName' })
-    //   .subscribe((changes: any) => {
-    //     this.allPosts = changes;
-    //     this.conversations = changes.sort((a, b) => { return a.timeStamp >= b.timeStamp ? 1 : -1 })
-    //     console.log('conversationslänge',this.conversations.length);
-    //     this.updateConversations();
-    //   });
-    
-
+   
   }
 
   ngOnChanges() {
@@ -144,7 +134,6 @@ export class PostOverviewComponent implements OnInit, OnChanges {
 
   openThread(threadId: string) {
     this.showThreadsChange.emit(true);
-    //this.threadIdObsChange.emit(!this.threadIdObs);
     this.threadIdChange.emit(threadId);
   }
 
@@ -152,7 +141,6 @@ export class PostOverviewComponent implements OnInit, OnChanges {
     if(this.searchString.length > 0){
       if(!(this.activeConversationId.includes('search')))this.memActiveConversationId = this.activeConversationId;
       this.activeConversationId = 'search for...:' + this.searchString;
-      //this.activeConversationType = 'search';
       let filterdConversations = [];
       this.posts.forEach(post => {
         const message:string = post.message.toString();

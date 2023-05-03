@@ -20,7 +20,7 @@ import { DialogEditProfilePictureComponent } from '../dialog-components/dialog-e
 export class HomeComponent implements OnInit {
   panelOpenState = false;
   activeUserId: string = '';
-  activeConversationId: string = '';
+  activeConversationId: string = 'choose a Channel oder Chat';
   conversations: Post[] = [];
   chats: string[] = [];
   currentUser: any= '';
