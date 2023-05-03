@@ -6,6 +6,8 @@ import { Subject } from 'rxjs/internal/Subject';
 import { map } from 'rxjs';
 import { PostService } from '../services/post.service';
 import { Times } from 'src/models/time.class';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { DialogEditPostComponent } from '../dialog-components/dialog-edit-post/dialog-edit-post.component';
 
 @Component({
   selector: 'app-threads',
@@ -32,7 +34,7 @@ export class ThreadsComponent implements OnInit, OnChanges {
   mainThread: Post = new Post;
   times: Times = new Times;
 
-  constructor(private postService: PostService, public home: HomeComponent) { }
+  constructor(private postService: PostService, public home: HomeComponent, public dialog: MatDialog,) { }
 
   ngOnInit(): void {
     this.retrievePosts();
@@ -124,9 +126,13 @@ export class ThreadsComponent implements OnInit, OnChanges {
     });
   }
 
+  editThread(post: Post){
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = { post: post, userName: this.activeUserId }
+    this.dialog.open(DialogEditPostComponent, dialogConfig);
+  }
+
   setThreadAmount() {
-    console.log('setThreadAmount',this.mainThread.customIdName) ;
-    console.log('setThreadAmount',this.threads) ;
     if (this.threads.length > 0) {
       this.postService.update(this.mainThread.customIdName, { threadAmount: this.threads.length });
     }

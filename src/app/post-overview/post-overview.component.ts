@@ -35,7 +35,7 @@ export class PostOverviewComponent implements OnInit, OnChanges {
   memActiveConversationId = '';
 
 
-  constructor(private postService: PostService, public home: HomeComponent, public dialog: MatDialog,) { }
+  constructor(private postService: PostService, public home: HomeComponent, public dialog: MatDialog) { }
 
 
 

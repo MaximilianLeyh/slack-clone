@@ -26,10 +26,9 @@ export class DialogEditPostComponent implements OnInit {
   }
 
   saveEdit(){
-    const data = {message: this.message};
-    this.postService.update(this.post.conversationId, data)
+    this.postService.update(this.post.customIdName, {message: this.message})
     .then(()=> {
-      console.log('edit succesful');
+      //console.log('edit succesful');
       
     })
     .catch(err => console.log(err)

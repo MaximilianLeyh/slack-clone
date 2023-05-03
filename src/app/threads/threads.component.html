@@ -17,10 +17,10 @@
                 </div>
                 <div class="optionBox">
                     <button>
-                        <mat-icon (click)="updateThreads()">edit</mat-icon>
+                        <mat-icon (click)="editThread(post)">edit</mat-icon>
                     </button>
                     <button>
-                        <!-- <mat-icon (click)="deleteThread(customIdName: string)">delete</mat-icon> -->
+                        <mat-icon (click)="deleteThread(post.customIdName)">delete</mat-icon>
                     </button>
                 </div>
             </div>
