@@ -20,10 +20,10 @@
                     <div class="firstPost">
                         {{post.message}}
                     </div>
-                    <span class="answers" (click)="openThread(post.threadId)">{{post.threadAmount}}Answers</span>
+                    <span class="answers" (click)="openThread(post.threadId)" *ngIf="(post.conversationType == 'channel')">{{post.threadAmount}}Answers</span>
                 </div>
                 <div class="optionBox">
-                    <button>
+                    <button  *ngIf="(post.conversationType == 'channel')">
                         <mat-icon (click)="openThread(post.threadId)">comment</mat-icon>
                     </button>
                     <button>
