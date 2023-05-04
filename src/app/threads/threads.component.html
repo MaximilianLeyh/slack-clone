@@ -8,7 +8,7 @@
     <div class="postContentContainer">
         <div *ngFor="let post of threads">
             <div class="postContent" >
-                <img class="userPic" src="'../../assets/img/profil/pingu.png">
+                <img class="userPic" src="../../assets/img/profil/{{home.getUserAvatar(post.userId)}}">
                 <div class="postHeader">
                     <span>{{ post.userId }} </span> {{times.getTime(post.timeStamp)}}
                     <div class="firstPost">

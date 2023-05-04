@@ -27,6 +27,8 @@ export class DialogAddConversationComponent implements OnInit {
 }
   ngOnInit(): void {
     this.users = this.userservice.getUsers();
+    console.log(this.userName);
+    
   }
 
 createConversation() {

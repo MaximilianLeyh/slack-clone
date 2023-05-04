@@ -6,7 +6,7 @@
         <div *ngFor="let post of conversations">
             <div class="conversationInfo" *ngIf="!post.subPost">
                 <div class="header">
-                    <div class="userPic" *ngIf="!(post.conversationType == 'channel')">pic</div>
+                    <img class="userPic" *ngIf="!(post.conversationType == 'channel')" src="../../assets/img/profil/{{home.getUserAvatar(post.userId)}}"> 
                     <span># {{home.removeUser(post.conversationId)}}</span>
                 </div>
                 <div class="content">
@@ -14,7 +14,7 @@
                 </div>
             </div>
             <div class="postContent" *ngIf="post.subPost">
-                <img class="userPic" src="'../../assets/img/profil/pingu.png"> 
+                <img class="userPic" src="../../assets/img/profil/{{home.getUserAvatar(post.userId)}}"> 
                 <div class="postHeader">            
                     <span>{{ post.userId }}  {{times.getDate(post.timeStamp)}}  {{times.getTime(post.timeStamp)}}</span> 
                     <div class="firstPost">

@@ -48,13 +48,7 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getData();
-    try {
-      this.activeUserId = this.userService.currentUser.userName;
-      if(this.activeUserId.length > 0) localStorage.setItem('loggedUser', this.activeUserId);
-      else this.activeUserId = localStorage.getItem('loggedUser');
-    } catch (error) {
-      
-    }
+    
     
     this.firestore
       .collection('conversations')
@@ -63,10 +57,22 @@ export class HomeComponent implements OnInit {
         this.allPosts = changes;
         this.conversations = changes.sort((a, b) => { return a.timeStamp >= b.timeStamp ? 1 : -1 })
         this.threadIdObs = !this.threadIdObs;
+        this.setUserId();
         this.collectChats();
         this.collectChannels(); 
       });
   };
+
+  setUserId(){
+    try {
+      this.activeUserId = this.userService.currentUser.userName;
+      if(this.activeUserId.length > 0) localStorage.setItem('loggedUser', this.activeUserId);
+      else this.activeUserId = localStorage.getItem('loggedUser');
+      console.log('homeinit',this.activeUserId);      
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   removeUser(name: string){
     let one = name.replace(this.activeUserId,'');
@@ -82,16 +88,12 @@ export class HomeComponent implements OnInit {
   }
 
   collectChats() {
-    if (this.activeUserId.length > 0) {
-      this.chats = [];
+    this.chats = [];
     this.allPosts.forEach(post => {
-      if (post.conversationType == 'chat') {
+      if (post.conversationType == 'chat' && post.conversationId.includes(this.activeUserId)) {
         if (!this.chats.includes(post.conversationId)) this.chats.push(post.conversationId);
       }
-
     });
-    }
-    
   }
 
   collectChannels() {
