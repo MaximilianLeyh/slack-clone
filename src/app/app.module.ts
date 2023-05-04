@@ -41,7 +41,7 @@ import { DialogAddChannelComponent } from './dialog-components/dialog-add-channe
 import { DialogAddConversationComponent } from './dialog-components/dialog-add-conversation/dialog-add-conversation.component';
 import { DialogEditProfilePictureComponent } from './dialog-components/dialog-edit-profile-picture/dialog-edit-profile-picture.component';
 import { DialogEditPostComponent } from './dialog-components/dialog-edit-post/dialog-edit-post.component';
-
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -88,7 +88,8 @@ import { DialogEditPostComponent } from './dialog-components/dialog-edit-post/di
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]

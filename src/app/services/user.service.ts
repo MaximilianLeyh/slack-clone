@@ -65,4 +65,12 @@ export class UserService {
   setImg(img: string) {
     return this.userRef2.doc(this.currentUser.id).update({ 'profileImg': img });
   }
+
+  getUsers() {
+    let users: string[] = [];
+    this.users.forEach(user => {
+      users.push(user.userName)
+    });
+    return users;
+  }
 }
