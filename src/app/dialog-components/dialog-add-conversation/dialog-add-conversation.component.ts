@@ -39,7 +39,7 @@ createConversation() {
   post.conversationType = 'chat';
   post.subPost = false;
   post.threadId = this.post.threadId;
-  post.message = this.chatDescription + this.userName;
+  post.message = this.chatDescription + this.post.threadId;
   post.userId = this.userName
   this.postservice.create(post);
 }
