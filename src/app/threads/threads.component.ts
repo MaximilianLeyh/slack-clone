@@ -33,6 +33,7 @@ export class ThreadsComponent implements OnInit, OnChanges {
   postId: string;
   mainThread: Post = new Post;
   times: Times = new Times;
+  @Input() isMobile = false;
 
   constructor(private postService: PostService, public home: HomeComponent, public dialog: MatDialog,) { }
 
@@ -126,7 +127,7 @@ export class ThreadsComponent implements OnInit, OnChanges {
     });
   }
 
-  editThread(post: Post){
+  editThread(post: Post) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = { post: post, userName: this.activeUserId }
     this.dialog.open(DialogEditPostComponent, dialogConfig);

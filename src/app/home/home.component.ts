@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnChanges, OnInit, SimpleChanges, Input } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { AuthService } from '../services/auth.service';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
@@ -17,7 +17,7 @@ import { DialogEditProfilePictureComponent } from '../dialog-components/dialog-e
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnChanges {
   panelOpenState = false;
   activeUserId: string = '';
   activeConversationId: string = 'choose a Channel oder Chat';
@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
   channels: string[] = [];
   allPosts: any;
   activeConversationType: string;
-  showThreads:boolean = false;
+  @Input() showThreads:boolean = false;
   threadId: string;
   threads: Post[] = [];
   threadIdObs:boolean = false;
@@ -37,6 +37,7 @@ export class HomeComponent implements OnInit {
   profileImg: '';
   avatars = [];
   searchString = '';
+  isMobile = false;
 
   constructor(
     public authService: AuthService,
@@ -45,10 +46,15 @@ export class HomeComponent implements OnInit {
     public userService: UserService,
     public toggler: DrawerTogglerService
     ) { }
+  
+  
+  ngOnChanges(): void {
+    
+  }
 
   ngOnInit() {
     this.userService.getData();
-    
+    if(window.innerWidth < 800) this.isMobile = true;
     
     this.firestore
       .collection('conversations')
@@ -152,11 +158,13 @@ export class HomeComponent implements OnInit {
       this.toggler.open = false;
       this.toggler.showToggleBtn = true;
       this.displayNotiffication = true;
+      this.isMobile = true;
     } else {
       this.toggler.type = 'side';
       this.toggler.open = true;
       this.toggler.showToggleBtn = false;
       this.displayNotiffication = false;
+      this.isMobile = false;
     }
   }
 }

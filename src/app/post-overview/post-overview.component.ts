@@ -26,13 +26,13 @@ export class PostOverviewComponent implements OnInit, OnChanges {
   @Output() showThreadsChange = new EventEmitter<boolean>();
   @Input() threadId: string;
   @Output() threadIdChange = new EventEmitter<string>();
-  @Input() threadIdObs: boolean;
-  @Output() threadIdObsChange = new EventEmitter<boolean>();
+  @Input() isMobile: boolean;
   emptyInput: string = '';
   conversations: Post[] = [];
   times: Times = new Times;
   @Input() searchString = '';
   memActiveConversationId = '';
+  hidePostOverview = false;
 
 
   constructor(private postService: PostService, public home: HomeComponent, public dialog: MatDialog) { }
@@ -50,7 +50,9 @@ export class PostOverviewComponent implements OnInit, OnChanges {
       this.updateConversations();
       }
     else this.showFiltered();
-    
+    if(this.isMobile && !this.showThreads) this.hidePostOverview = false;
+    if(!this.isMobile && this.hidePostOverview) this.hidePostOverview = false;
+    if(this.isMobile && this.showThreads) this.hidePostOverview = true;
   }
 
   retrievePosts() {

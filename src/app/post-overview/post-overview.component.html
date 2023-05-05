@@ -1,4 +1,4 @@
-<div class="postsOverview">
+<div class="postsOverview" [ngStyle]="{'display': hidePostOverview ? 'none' : 'block'}"> 
     <div class="postContentHeader">
         <span>{{ home.removeUser(activeConversationId) }}</span>
     </div>

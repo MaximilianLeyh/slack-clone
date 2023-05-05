@@ -108,6 +108,10 @@
         border: none;
         cursor: pointer;
     }
+
+    .mat-mdc-form-field{
+        width: 100%;
+    }
 }
 
 @media(max-width:800px) {
