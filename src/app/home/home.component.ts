@@ -31,7 +31,7 @@ export class HomeComponent implements OnInit {
   threadId: string;
   threads: Post[] = [];
   threadIdObs:boolean = false;
-  activeConversationTyp: string;
+  //activeConversationTyp: string;
   displayNotiffication: boolean = false;
   loggedIn: boolean = true;
   profileImg: '';
@@ -56,23 +56,33 @@ export class HomeComponent implements OnInit {
       .subscribe((changes: any) => {
         this.allPosts = changes;
         this.conversations = changes.sort((a, b) => { return a.timeStamp >= b.timeStamp ? 1 : -1 })
-        this.threadIdObs = !this.threadIdObs;
+        this.getUserValues()
         this.setUserId();
         
       });
   };
 
   setUserId(){
-    try {
-      this.activeUserId = this.userService.currentUser.userName;
-      if(this.activeUserId.length > 0) localStorage.setItem('loggedUser', this.activeUserId);
+   
+      this.userService.currentUser$.subscribe(user => {
+        this.activeUserId = user.userName;
+        if(this.activeUserId.length > 0) localStorage.setItem('loggedUser', this.activeUserId);
       else this.activeUserId = localStorage.getItem('loggedUser');
       //console.log('homeinit',this.activeUserId);  
       this.collectChats();
-      this.collectChannels();     
-    } catch (error) {
-      console.log(error);
-    }
+      this.collectChannels();   
+      })  ;
+  
+  }
+
+  setUserValues(){
+    localStorage.setItem('lastConversationId', this.activeConversationId)
+    localStorage.setItem('lastConversationType', this.activeConversationType)
+  }
+
+  getUserValues(){
+    this.activeConversationId = localStorage.getItem('lastConversationId');
+    this.activeConversationType = localStorage.getItem('lastConversationType');
   }
 
   removeUser(name: string){
@@ -118,6 +128,7 @@ export class HomeComponent implements OnInit {
   changeActiveConversationId(conversation: any, type: string) {
     this.activeConversationId = conversation;
     this.activeConversationType = type;
+    this.setUserValues();
   }
 
   openAddConversation() {

@@ -12,6 +12,11 @@
                 <div class="content">
                     {{post.message}}
                 </div>
+                <div class="optionBox">
+                    <button  *ngIf="(post.conversationType == 'channel' && post.userId == activeUserId)">
+                        <mat-icon (click)="deletePost(post.customIdName)">delete</mat-icon>
+                    </button>
+                </div>
             </div>
             <div class="postContent" *ngIf="post.subPost">
                 <img class="userPic" src="../../assets/img/profil/{{home.getUserAvatar(post.userId)}}"> 
@@ -20,16 +25,16 @@
                     <div class="firstPost">
                         {{post.message}}
                     </div>
-                    <span class="answers" (click)="openThread(post.threadId)" *ngIf="(post.conversationType == 'channel')">{{post.threadAmount}}Answers</span>
+                    <span class="answers" (click)="openThread(post.threadId)" *ngIf="(post.conversationType == 'channel')">{{post.threadAmount}} Answers</span>
                 </div>
                 <div class="optionBox">
                     <button  *ngIf="(post.conversationType == 'channel')">
                         <mat-icon (click)="openThread(post.threadId)">comment</mat-icon>
                     </button>
-                    <button>
+                    <button *ngIf="(post.userId == activeUserId)">
                         <mat-icon (click)="editPost(post)">edit</mat-icon>
                     </button>
-                    <button>
+                    <button *ngIf="(post.userId == activeUserId)">
                         <mat-icon (click)="deletePost(post.customIdName)">delete</mat-icon>
                     </button>
                 </div>
