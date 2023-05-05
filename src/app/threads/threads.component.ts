@@ -137,14 +137,4 @@ export class ThreadsComponent implements OnInit, OnChanges {
       this.postService.update(this.mainThread.customIdName, { threadAmount: this.threads.length });
     }
   }
-
-  // @HostListener('window:resize', ['$event'])
-  // onResize(event) {
-  //   if (window.innerWidth < 800) {
-  //     this.showThreads = false;
-  //   } else {
-  //     this.showThreads = true;
-  //   }
-  // }
-
 }
