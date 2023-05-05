@@ -58,8 +58,7 @@ export class HomeComponent implements OnInit {
         this.conversations = changes.sort((a, b) => { return a.timeStamp >= b.timeStamp ? 1 : -1 })
         this.threadIdObs = !this.threadIdObs;
         this.setUserId();
-        this.collectChats();
-        this.collectChannels(); 
+        
       });
   };
 
@@ -68,7 +67,9 @@ export class HomeComponent implements OnInit {
       this.activeUserId = this.userService.currentUser.userName;
       if(this.activeUserId.length > 0) localStorage.setItem('loggedUser', this.activeUserId);
       else this.activeUserId = localStorage.getItem('loggedUser');
-      console.log('homeinit',this.activeUserId);      
+      //console.log('homeinit',this.activeUserId);  
+      this.collectChats();
+      this.collectChannels();     
     } catch (error) {
       console.log(error);
     }
