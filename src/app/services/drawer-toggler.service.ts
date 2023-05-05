@@ -4,7 +4,7 @@ import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
   providedIn: 'root'
 })
 export class DrawerTogglerService {
-  // isSidenavOpen: boolean = true;
+  isSidenavOpen: boolean = true;
   public type: any = 'side';
   public open: boolean = true;
   public showToggleBtn: boolean = false;

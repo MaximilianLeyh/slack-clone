@@ -18,23 +18,23 @@ export class DialogEditProfilePictureComponent {
   loading = false;
   public images: any = [
     {
-      name: 'Pinguin',
+      name: 'pinguin',
       img: 'pingu.png',
     },
     {
-      name: 'Standard',
+      name: 'standard',
       img: 'blank-profile.png',
     },
     {
-      name: 'Female',
+      name: 'female',
       img: 'female1.png',
     },
     {
-      name: 'Male',
+      name: 'male',
       img: 'male1.png',
     },
     {
-      name: 'Sunglasses',
+      name: 'sunglasses',
       img: 'sunglasses.png',
     },
     {

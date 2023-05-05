@@ -135,7 +135,7 @@ export class HomeComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
-    if (window.innerWidth < 600) {
+    if (window.innerWidth < 800) {
       this.toggler.type = 'over';
       this.toggler.open = false;
       this.toggler.showToggleBtn = true;
