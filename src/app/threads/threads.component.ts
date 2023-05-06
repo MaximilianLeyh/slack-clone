@@ -52,6 +52,7 @@ export class ThreadsComponent implements OnInit, OnChanges {
     ).subscribe(data => {
       this.conversations = data;
       this.updateThreads();
+      this.collectThreads();
     });
 
   }

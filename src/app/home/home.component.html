@@ -67,7 +67,7 @@
         <div class="router-container">
             <app-post-overview  style="height: 100%; width: 100%" [ngStyle]="{'display': isMobile && showThreads ? 'none': 'block'}" [activeUserId]="activeUserId" [activeConversationType]="activeConversationType" [(threadId)]="threadId"
                 [activeConversationId]="activeConversationId" [(showThreads)]="showThreads" [isMobile]="isMobile"  [searchString]="searchString"></app-post-overview>
-            <app-threads  [ngStyle]="{'width': isMobile && showThreads ? '100%' : 'auto'}" [activeUserId]="activeUserId" [activeConversationType]="activeConversationType"
+            <app-threads  [ngStyle]="{'width': isMobile && showThreads ? '100%' : 'auto','overflow-y' : 'auto'}" [activeUserId]="activeUserId" [activeConversationType]="activeConversationType"
             [threadId]="threadId" [(showThreads)]="showThreads" [isMobile]="isMobile"></app-threads>
         </div>
     </div>
