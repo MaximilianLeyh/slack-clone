@@ -1,23 +1,24 @@
-.postsOverview{   
+.postsOverview {
     background-color: #F8F8F8;
 }
 
-.conversationInfo{
+.conversationInfo {
     height: auto;
     border-bottom: 2px solid lightgrey;
-    
 
-    .content{
+
+    .content {
         padding-left: 20px;
         padding-top: 10px;
         padding-bottom: 10px;
     }
-    span{
+
+    span {
         font-weight: bold;
     }
 }
 
-.header{
+.header {
     display: flex;
     flex-direction: column;
     position: relative;
@@ -27,12 +28,12 @@
     border-bottom: 2px solid lightgrey;
 }
 
-.postContentContainer{
+.postContentContainer {
     height: calc(80vh - 120px);
     overflow-y: auto;
 }
 
-.postContentHeader{
+.postContentHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -42,37 +43,40 @@
     padding-left: 20px;
 }
 
-.postContent{
+.postContent {
     display: flex;
     padding-top: 10px;
     min-height: 80px;
     padding-left: 20px;
     border-bottom: 2px solid lightgrey;
 
-    &:hover{
+    &:hover {
         background-color: rgba(12, 12, 12, 0.15);
 
         .optionBox {
             opacity: 1;
         }
     }
-    .postHeader{
+
+    .postHeader {
         padding-left: 10px;
 
-       .answers {
-        padding-top: 10px;
-       }
-       
+        .answers {
+            padding-top: 10px;
+        }
+
     }
-    .post{
+
+    .post {
         padding-top: 12px;
-        &:hover{
+
+        &:hover {
             background-color: rgba(12, 12, 12, 0.15);
         }
     }
 }
 
-.userPic{
+.userPic {
     height: 42px;
     width: 42px;
     border-radius: 8px;
@@ -81,19 +85,19 @@
 .optionBox {
     display: flex;
     flex-direction: column;
-   padding-left: 10px;
+    padding-left: 10px;
     opacity: 0;
 
 
     button {
-    &:hover {
-        background-color: aqua;
-        cursor: pointer;
+        &:hover {
+            background-color: aqua;
+            cursor: pointer;
+        }
     }
 }
-}
 
-.messageBox{
+.messageBox {
     width: 90%;
     display: flex;
     justify-content: center;
@@ -103,14 +107,18 @@
     margin-right: auto;
     padding-top: 40px;
 
-    Button{
-        background-color: white;
+    Button {
+        background-color: #F8F8F8;
         border: none;
         cursor: pointer;
     }
 
-    .mat-mdc-form-field{
+    .mat-mdc-form-field {
         width: 100%;
+    }
+
+    @media(max-width: 400px) {
+        padding-top: 15px;
     }
 }
 

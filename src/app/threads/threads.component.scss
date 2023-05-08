@@ -115,7 +115,12 @@ body {
     margin-left: auto;
     margin-right: auto;
     padding-bottom: 60px;
-
+    
+    Button{
+        background-color: #F8F8F8;
+        border: none;
+        cursor: pointer;
+    }
 }
 
 @media(max-width:800px) {

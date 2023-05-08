@@ -66,7 +66,7 @@ export class AuthService {
           id: cred.user.uid,
           email: email,
           loggedIn: false,
-          profileImg: '../../assets/img/profil/blank-profile.png'
+          profileImg: 'blank-profile.png'
         });
         this.dialog.open(DialogSuccessMessageComponent);
         form.reset();
