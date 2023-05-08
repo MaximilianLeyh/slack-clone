@@ -1,7 +1,7 @@
 .main-content {
     padding: unset;
-    width: 400px;
-    height: 400px;
+    width: 230px;
+    height: 250px;
 
     mat-card {
         display: flex;
@@ -51,13 +51,18 @@
 
 
         .btn-container {
-            justify-content: flex-end;
+            justify-content: center;
+            padding-top: 50px;
             button {
                 background-color: blueviolet;
                 color: white;
+                width: 150px;
+                height: 30px;
+                border-radius: 8px;
 
                 &:hover {
                     background-color: rgb(185, 112, 253);
+                    cursor: pointer;
                 }
             }
         }
