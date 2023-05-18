@@ -19,6 +19,10 @@ export class UserSettingsComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * the function closes any open dialog window, logs out the current user by calling the appropriate method, 
+   * updates the loggedIn state, and redirects the user to the application's home page.
+   */
   logout(currentUser) {
     this.dialogRef.close()
     this.auth.logout(currentUser);

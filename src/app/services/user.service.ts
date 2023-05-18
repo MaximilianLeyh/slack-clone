@@ -16,6 +16,10 @@ export class UserService {
   userRef: any = collection(this.firestore, 'users');
   userRef2: AngularFirestoreCollection = null;  //set Colletion with type Post
 
+  /**
+   * the function sets up the this.currentUser$ observable that emits the current user's data from the database by using the switchMap() 
+   * operator to get the current user's ID from the AuthService and then using the docData() method to get the user's data from the Firestore database
+   */
   constructor(
     private db: AngularFirestore,
     public authService: AuthService,
@@ -57,11 +61,17 @@ export class UserService {
     )
   }
 
-
+  /**
+   * This function retrieves all the documents from the userRef collection in the Firestore database. It uses the getDocs() function from the Firestore library to perform the query.
+   */
   getData() {
     getDocs(this.userRef);
   }
 
+  /**
+   *This function updates the profile image of the current user in the Firestore database by calling the update() method on the userRef2 collection reference. 
+    It takes a string parameter img, which is the URL of the new image to set, and returns a Promise that resolves when the update is complete.
+   */
   setImg(img: string) {
     return this.userRef2.doc(this.currentUser.id).update({ 'profileImg': img });
   }

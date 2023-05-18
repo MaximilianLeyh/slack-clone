@@ -24,6 +24,10 @@ export class DialogAddChannelComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * his function creates a new conversation by initializing a Post object with various properties, 
+   * including the conversation type, user ID, timestamp, and message. The postService is then used to create and store the conversation post.
+   */
   createConversation(conversationType: string) {
     this.loading = true;
     let post = new Post();

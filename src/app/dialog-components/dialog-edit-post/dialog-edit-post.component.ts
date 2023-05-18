@@ -25,15 +25,15 @@ export class DialogEditPostComponent implements OnInit {
     this.message = this.post.message;
   }
 
+  /**
+   * this function saves an edit made to a post by calling the update method of the postService object with the post's customIdName and the updated message as parameters. 
+   * It handles potential errors by logging them to the console.
+   */
   saveEdit(){
     this.postService.update(this.post.customIdName, {message: this.message})
     .then(()=> {
-      //console.log('edit succesful');
-      
     })
     .catch(err => console.log(err)
     );
-    
   }
-
 }

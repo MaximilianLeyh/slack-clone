@@ -49,6 +49,9 @@ export class DialogEditProfilePictureComponent {
     public auth: AuthService,
     private router: Router) { }
 
+  /**
+   * this function is for changing the profilImg
+   */
   changeProfileImg(img: string) {
     this.userService.setImg(img);
   }

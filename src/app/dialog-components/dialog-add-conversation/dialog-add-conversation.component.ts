@@ -25,12 +25,19 @@ export class DialogAddConversationComponent implements OnInit {
   constructor(private postservice: PostService, @Inject(MAT_DIALOG_DATA) public data, private userservice: UserService)  {
   this.userName = data.userName;
 }
+  /**
+   * this ngOnInit function initializes the component by retrieving a list of users from the userservice and assigning it to the users property. 
+   * It also logs the value of the userName property to the console
+   */
   ngOnInit(): void {
     this.users = this.userservice.getUsers();
     console.log(this.userName);
-    
   }
 
+/**
+ * this function creates a new conversation by initializing a Post object with various properties, 
+ * including the conversation ID, type, timestamp, message, and user ID. The postservice is then used to create and store the conversation post.
+ */
 createConversation() {
   let post = new Post();
   this.loading = true;

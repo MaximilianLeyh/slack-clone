@@ -43,7 +43,10 @@ export class PostOverviewComponent implements OnInit, OnChanges {
     this.retrievePosts();
    
   }
-
+  /**
+   * if mobile is true = closes threads
+   * if search is true = shows filtered messages
+   */
   ngOnChanges() {
     if((this.searchString.length == 0)){
       if(this.activeConversationId.includes('search'))this.activeConversationId = this.memActiveConversationId;
@@ -55,6 +58,9 @@ export class PostOverviewComponent implements OnInit, OnChanges {
     if(this.isMobile && this.showThreads) this.hidePostOverview = true;
   }
 
+  /**
+   * retrieves post data from a database, transforms the data, sorts it, and updates the conversations in the UI
+   */
   retrievePosts() {
     this.postService.getAll().snapshotChanges().pipe(
       map(changes =>
@@ -69,6 +75,10 @@ export class PostOverviewComponent implements OnInit, OnChanges {
         
   }
 
+  /**
+   * this function filters the posts to only include those that match the currently active conversation and type,
+   * creates new Post objects from them, and updates the this.conversations array with the filtered and sorted posts to be displayed in the UI
+   */
   updateConversations() {
     let filterdConversations = [];
     try {
@@ -95,7 +105,9 @@ export class PostOverviewComponent implements OnInit, OnChanges {
     }
   }
 
-
+  /**
+   * this function creates a new post object, sets its properties, saves it to the database, and updates the conversations array with the new post
+   */
   savePost(): void {
     this.post.timeStamp = new Date().getTime();
     this.post.userId = this.activeUserId;
@@ -112,6 +124,10 @@ export class PostOverviewComponent implements OnInit, OnChanges {
     });
   }
 
+  /**
+   * this function deletes a post with a specified customIdName from the database, updates the conversations array
+   * and clears the selected thread ID if a post within a thread is deleted
+   */
   deletePost(customIdName: string) {
     this.postService.delete(customIdName).then(() => {
       this.updateConversations();
@@ -119,29 +135,47 @@ export class PostOverviewComponent implements OnInit, OnChanges {
     });
   }
 
+  /**
+   * this function opens a dialog box for editing a post by passing the post data to the DialogEditPostComponent component
+   */
   editPost(post: Post){
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = { post: post, userName: this.activeUserId }
     this.dialog.open(DialogEditPostComponent, dialogConfig);
   }
-
+  /**
+   * This function initializes a new instance of the Post class and assigns it to the post property of the component.
+   */
   newPost() {
     this.post = new Post();
   }
 
   
+  /**
+   * This function generates a random ID string to be used as a thread ID for a post.
+   */
   randomId() {
     return Math.random().toString(36).replace('0.', 'thread_');
   }
 
+  /**
+   * This function is used to open a thread and display the posts in the thread.
+   */
   openThread(threadId: string) {
     this.showThreadsChange.emit(true);
     this.threadIdChange.emit(threadId);
   }
-
+  /**
+   * This function is used to filter and display posts based on a search string. 
+   */
   showFiltered(){
     if(this.searchString.length > 0){
-      if(!(this.activeConversationId.includes('search')))this.memActiveConversationId = this.activeConversationId;
+      this.showFilteredOutsource();
+    }
+  }
+
+  showFilteredOutsource() {
+    if(!(this.activeConversationId.includes('search')))this.memActiveConversationId = this.activeConversationId;
       this.activeConversationId = 'search for...:' + this.searchString;
       let filterdConversations = [];
       this.posts.forEach(post => {
@@ -151,9 +185,5 @@ export class PostOverviewComponent implements OnInit, OnChanges {
       if(message.toLowerCase().includes(searchString) || name.toLocaleLowerCase().includes(searchString)) filterdConversations.push(post);
       this.conversations = filterdConversations.sort((a, b) => { return a.timeStamp >= b.timeStamp ? 1 : -1 })
     });
-
-    }
-
   }
-
 }

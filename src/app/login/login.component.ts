@@ -10,6 +10,9 @@ import { AuthService } from '../services/auth.service';
 export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
 
+  /**
+   * needed email and password to login
+   */
   constructor(private formBuilder: FormBuilder, public authService: AuthService) {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email], []],

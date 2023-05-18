@@ -23,15 +23,14 @@ export class HomeComponent implements OnInit, OnChanges {
   activeConversationId: string = 'choose a Channel oder Chat';
   conversations: Post[] = [];
   chats: string[] = [];
-  currentUser: any= '';
+  currentUser: any = '';
   channels: string[] = [];
   allPosts: any;
   activeConversationType: string;
-  @Input() showThreads:boolean = false;
+  @Input() showThreads: boolean = false;
   threadId: string;
   threads: Post[] = [];
-  threadIdObs:boolean = false;
-  //activeConversationTyp: string;
+  threadIdObs: boolean = false;
   displayNotiffication: boolean = false;
   loggedIn: boolean = true;
   profileImg: '';
@@ -45,65 +44,85 @@ export class HomeComponent implements OnInit, OnChanges {
     public dialog: MatDialog,
     public userService: UserService,
     public toggler: DrawerTogglerService
-    ) { }
-  
-  
+  ) { }
+
   ngOnChanges(): void {
-    
+
   }
 
   ngOnInit() {
+    /**
+     * if window.innerWidth < 800px changes is.Mobile to true wich close the navbar
+     */
     this.userService.getData();
-    if(window.innerWidth < 800) this.isMobile = true;
-    
+    if (window.innerWidth < 800) this.isMobile = true;
+
+    /**
+     * his function subscribes to changes in the "conversations" collection in Firestore, sorts the resulting array by timeStamp, and updates the conversations in the UI
+     */
     this.firestore
       .collection('conversations')
       .valueChanges({ idField: 'customIdName' })
       .subscribe((changes: any) => {
         this.allPosts = changes;
         this.conversations = changes.sort((a, b) => { return a.timeStamp >= b.timeStamp ? 1 : -1 })
-        this.getUserValues()
+        this.getUserValues();
         this.setUserId();
-        
       });
   };
 
-  setUserId(){
-   
-      this.userService.currentUser$.subscribe(user => {
-        this.activeUserId = user.userName;
-        if(this.activeUserId.length > 0) localStorage.setItem('loggedUser', this.activeUserId);
-      else this.activeUserId = localStorage.getItem('loggedUser');
-      //console.log('homeinit',this.activeUserId);  
+  /**
+   * Gives the username  his userid
+   */
+  setUserId() {
+
+    this.userService.currentUser$.subscribe(user => {
+      this.activeUserId = user.userName;
+      if (this.activeUserId.length > 0) localStorage.setItem('loggedUser', this.activeUserId);
+      else this.activeUserId = localStorage.getItem('loggedUser');  
       this.collectChats();
-      this.collectChannels();   
-      })  ;
-  
+      this.collectChannels();
+    });
   }
 
-  setUserValues(){
+  /**
+   * sets the value of the specified Storage Object item
+   */
+  setUserValues() {
     localStorage.setItem('lastConversationId', this.activeConversationId)
     localStorage.setItem('lastConversationType', this.activeConversationType)
   }
 
-  getUserValues(){
+  /**
+   * returns value of the specified Storage Object item
+   */
+  getUserValues() {
     this.activeConversationId = localStorage.getItem('lastConversationId');
     this.activeConversationType = localStorage.getItem('lastConversationType');
   }
 
-  removeUser(name: string){
-    let one = name.replace(this.activeUserId,'');
-    return one.replace('|','')
+  /**
+   * returns a new string with the value(s) replaced
+   */
+  removeUser(name: string) {
+    let one = name.replace(this.activeUserId, '');
+    return one.replace('|', '')
   }
 
+  /**
+   * returns the user profil img
+   */
   getUserAvatar(userId: string) {
     let value = 'blank-profile.png';
     this.userService.users.forEach(user => {
-      if(user.userName === userId) value = user.profileImg;
+      if (user.userName === userId) value = user.profileImg;
     });
     return value;
   }
 
+  /**
+   * shows all chats with the user
+   */
   collectChats() {
     this.chats = [];
     this.allPosts.forEach(post => {
@@ -113,6 +132,9 @@ export class HomeComponent implements OnInit, OnChanges {
     });
   }
 
+  /**
+   * shows all post in the channel
+   */
   collectChannels() {
     this.channels = [];
     this.allPosts.forEach(post => {
@@ -122,98 +144,77 @@ export class HomeComponent implements OnInit, OnChanges {
     });
   }
 
-
+  /**
+   * open the userSettingsDialog
+   */
   openLogout() {
     this.dialog.open(UserSettingsComponent);
   }
 
+  /**
+   * opens editPictureDialog
+   */
   openEditProfil() {
     this.dialog.open(DialogEditProfilePictureComponent);
   }
 
+  /**
+   * changes the active conversation
+   */
   changeActiveConversationId(conversation: any, type: string) {
     this.activeConversationId = conversation;
     this.activeConversationType = type;
     this.setUserValues();
   }
 
+  /**
+   * opens the dialogAddConversations
+   */
   openAddConversation() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = { userName: this.activeUserId }
     this.dialog.open(DialogAddConversationComponent, dialogConfig);
   }
 
+  /**
+   * opens the dialogAddChannel
+   */
   openAddChannel() {
     this.dialog.open(DialogAddChannelComponent);
   }
 
+  /**
+   * open or closes the SidenavComponent
+   */
   closeSidenav() {
-   this.displayNotiffication = !this.displayNotiffication;
+    this.displayNotiffication = !this.displayNotiffication;
   }
 
+  /**
+   * Rezise-Event: if the window.innerwidth< 800 the navbar gets closed and the arrow spins
+   */
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     if (window.innerWidth < 800) {
-      this.toggler.type = 'over';
+      this.closeToggler();
+    } else {
+      this.openToggler();
+    }
+  }
+
+  closeToggler() {
+    this.toggler.type = 'over';
       this.toggler.open = false;
       this.toggler.showToggleBtn = true;
       this.displayNotiffication = true;
       this.isMobile = true;
-    } else {
-      this.toggler.type = 'side';
+  }
+
+  openToggler() {
+    this.toggler.type = 'side';
       this.toggler.open = true;
       this.toggler.showToggleBtn = false;
       this.displayNotiffication = false;
       this.isMobile = false;
-    }
   }
 }
-
-
-// import firebase from 'firebase/app';
-// import 'firebase/firestore';
-
-// // Assuming you have already initialized Firebase and have a Firestore instance
-// const db = firebase.firestore();
-
-// // Interface for the conversation object
-// interface Conversation {
-//   id: string;
-//   messages: string[];
-// }
-
-// // Function to search for a message in conversations
-// const searchMessage = async (message: string): Promise<Conversation[]> => {
-//   try {
-//     // Query conversations collection to get all documents
-//     const snapshot = await db.collection('conversations').get();
-//     const conversations: Conversation[] = [];
-
-//     // Loop through each document
-//     snapshot.forEach((doc) => {
-//       const conversation = doc.data() as Conversation;
-      
-//       // Check if the conversation has the message
-//       if (conversation.messages.includes(message)) {
-//         conversations.push({ id: doc.id, ...conversation });
-//       }
-//     });
-
-//     return conversations;
-//   } catch (error) {
-//     console.error('Error searching for message:', error);
-//     throw error;
-//   }
-// };
-
-// // Usage
-// const searchTerm = 'hello';
-// searchMessage(searchTerm)
-//   .then((conversations) => {
-//     console.log('Conversations containing the message:', conversations);
-//   })
-//   .catch((error) => {
-//     console.error('Error searching for message:', error);
-//   });
-
-

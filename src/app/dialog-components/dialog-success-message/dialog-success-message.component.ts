@@ -18,6 +18,9 @@ export class DialogSuccessMessageComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * this function closes the dialog
+   */
   closeDialog() {
     this.dialogRef.close();
   }

@@ -17,10 +17,16 @@ export class StartScreenComponent implements OnInit {
 
   }
 
+  /**
+   * opens the dialog for the loginComponent
+   */
   openLogin() {
     this.dialog.open(LoginComponent);
   }
 
+  /**
+   * opens the dialog for the registerComponent
+   */
   openSignUp() {
     this.dialog.open(RegisterComponent);
   }

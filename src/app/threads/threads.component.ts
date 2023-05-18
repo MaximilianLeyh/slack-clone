@@ -41,7 +41,10 @@ export class ThreadsComponent implements OnInit, OnChanges {
     this.retrievePosts();
     this.collectThreads();
   }
-
+  /**
+   * this function retrieves posts, transforms the data, assigns it to a property (this.conversations)
+   * and triggers two additional methods (updateThreads() and collectThreads()) to perform further operations on the retrieved data
+   */
   retrievePosts() {
     this.postService.getAll().snapshotChanges().pipe(
       map(changes =>
@@ -54,18 +57,26 @@ export class ThreadsComponent implements OnInit, OnChanges {
       this.updateThreads();
       this.collectThreads();
     });
-
   }
 
+  /**
+   * after changes starts again collect Threads()
+   */
   ngOnChanges() {
     this.collectThreads();
   }
 
-
+  /**
+   * close the threadsBoard
+   */
   closeThreads() {
     this.showThreadsChange.emit(false);
   }
-
+  
+  /**
+   * the function creates a new array (filteredConversations) and populates it with filtered and transformed Post objects based on some condition. 
+   * Then, it assigns the filtered and sorted array back to the this.conversations property, replacing the original array.
+   */
   updateThreads() {
     let filterdConversations = [];
     for (let i = 0; i < this.conversations.length; i++) {
@@ -88,7 +99,12 @@ export class ThreadsComponent implements OnInit, OnChanges {
     }
     this.conversations = filterdConversations.sort((a, b) => { return a.timeStamp >= b.timeStamp ? 1 : -1 })
   }
-
+  /**
+   * the function collects conversation objects from the conversations array that have a matching threadId to the stored this.threadId.
+   * It adds those conversation objects to the threads array, 
+   * assigns the conversationId of the matched conversation object to the activeConversationId property, 
+   * and assigns the first conversation object in the threads array to the mainThread property
+   */
   collectThreads() {
     this.threads = [];
     this.conversations.forEach(conv => {
@@ -100,7 +116,10 @@ export class ThreadsComponent implements OnInit, OnChanges {
     });
   }
 
-
+  /**
+   * the function creates a new thread by creating a Post object with the necessary properties and saves it using the postService. 
+   * Once the saving process is complete, it updates relevant properties and potentially triggers additional operations.
+   */
   saveThread() {
     this.loading = true;
     this.post = new Post();
@@ -120,6 +139,10 @@ export class ThreadsComponent implements OnInit, OnChanges {
       });
   }
 
+  /**
+   * he function deletes the thread with the specified customIdName using the postService. After the deletion, 
+   * it collects and updates the threads, performs any necessary updates or calculations on the threads, and updates the thread count or amount.
+   */
   deleteThread(customIdName: string) {
     this.postService.delete(customIdName).then(() => {
       this.collectThreads();
@@ -128,12 +151,20 @@ export class ThreadsComponent implements OnInit, OnChanges {
     });
   }
 
+  /**
+   * The function opens a dialog window for editing a thread. 
+   * It passes the post object and the activeUserId as data to the dialog window component (DialogEditPostComponent), allowing it to access and modify the thread information.
+   */
   editThread(post: Post) {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.data = { post: post, userName: this.activeUserId }
     this.dialog.open(DialogEditPostComponent, dialogConfig);
   }
 
+  /**
+   * The function updates the threadAmount property of the main thread in the postService with the number of threads stored in the threads array. 
+   * This ensures that the main thread reflects the correct count of threads associated with it.
+   */
   setThreadAmount() {
     if (this.threads.length > 0) {
       this.postService.update(this.mainThread.customIdName, { threadAmount: this.threads.length });

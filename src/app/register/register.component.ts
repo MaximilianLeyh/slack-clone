@@ -13,7 +13,9 @@ import { AuthService } from '../services/auth.service';
 export class RegisterComponent implements OnInit {
   public registerForm: FormGroup;
 
-
+  /**
+   * This is the constructor of a component named RegisterComponent. It injects the FormBuilder, MatDialogRef, MatDialog, and AuthService services as dependencies.
+   */
   constructor(private formBuilder: FormBuilder
     , public dialogRef: MatDialogRef<RegisterComponent>,
     public dialog: MatDialog,
@@ -25,15 +27,15 @@ export class RegisterComponent implements OnInit {
     })
   }
 
-  
   ngOnInit(): void {
 
   }
 
-
+  /**
+   * This function closes the current dialog box opened by the MatDialogRef and opens the LoginComponent in a new dialog box.
+   */
   closeDialog() {
     this.dialogRef.close();
     this.dialog.open(LoginComponent);
   }
-
 }

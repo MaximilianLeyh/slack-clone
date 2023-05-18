@@ -25,7 +25,13 @@ export class AuthService {
   colRef: any = collection(this.db, 'users');
   loggedUser: Observable<any> = authState(this.auth);
 
-
+  /**
+   * This constructor sets up the component that uses it by initializing some properties and subscribing to the authentication state changes using Firebase's onAuthStateChanged method. 
+     When a user's authentication state changes, the callback function provided to onAuthStateChanged is executed, 
+     which updates the userData property of the component and stores it in the browser's local storage using the setItem method. 
+     If the user is not authenticated, the userData property is set to null.
+     Finally, the isLoggedIn method is called to check if the user is already logged in or not.
+   */
   constructor(public dialog: MatDialog,
     private firestore: Firestore,
     private router: Router
@@ -116,21 +122,5 @@ export class AuthService {
     this.errorCode = eCode;
     this.dialog.open(DialogErrorComponent);
   }
-
-
-  // guestLogin() {
-  //   signInAnonymously(this.auth)
-  //     .then((guest) => {
-  //       // console.log(guest);
-  //       setDoc(doc(this.colRef, guest.user.uid), {
-  //         userName: 'guest',
-  //       });
-  //       this.loggedIn = true;
-  //       this.router.navigate(['/home']);
-  //     })
-  //     .catch((e) => {
-  //       this.handleError(e.message, e.code);
-  //     })
-  // }
 }
 

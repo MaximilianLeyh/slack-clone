@@ -30,6 +30,9 @@ export class DialogErrorComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  /**
+   * this function closes the dialog
+   */
   closeDialog() {
     this.dialogRef.close();
   }
